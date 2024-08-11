@@ -13,12 +13,23 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
+            $table->string('name', 20); //名前
+            $table->string('self_introduction', 200)->nullable(); //自己紹介
+            $table->enum('gender', ['男性', '女性'])->nullable(); //性別(ラジオボタン)
+            $table->integer('age')->nullable(); //年齢(ドロップダウン)
+            $table->string('favorite_bird', 100)->nullable(); //質問・好きな鳥
+            $table->string('my_pet', 100)->nullable(); //質問・愛鳥
+            $table->string('bird_watching', 100)->nullable(); //質問・鳥見場所
+            $table->string('image_path')->nullable(); // プロフィール画像
+            $table->timestamps(); //作成日時、更新日時
+            $table->string('password'); //パスワード
+            $table->string('email')->unique(); //メール
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
             $table->rememberToken();
-            $table->timestamps();
+            //'prefecture_id' は 'prefecturesテーブル' の 'id' を参照する外部キー
+            $table->foreignId('prefecture_id')->nullable()->constrained();
+            //'bird_picture_id' は 'bird_picturesテーブル' の 'id' を参照する外部キー
+            $table->foreignId('bird_picture_id')->nullable()->constrained();
         });
     }
 
