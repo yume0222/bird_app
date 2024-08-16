@@ -18,42 +18,29 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
-    // public function edit(Request $request): View
-    // {
-    //     return view('profile.edit', [
-    //         'user' => $request->user(),
-    //     ]);
-    // }
-    public function edit(Request $request, Prefecture $prefecture, User $user): View
+    public function edit(Request $request, User $user, Prefecture $prefecture): View //プロフィール編集画面表示
     {
-        // if($request->file('bird_img_path')){
-        //     $bird_img_path = Cloudinary::upload($request->file('bird_img_path')->getRealPath())->getSecurePath();
-        //     $input += ['bird_img_path' => $bird_img_path];
-        // }
-        // if($request->file('image_path')){
-        //     $image_pathl = Cloudinary::upload($request->file('image_path')->getRealPath())->getSecurePath();
-        //     $input += ['image_pathl' => $image_path];
-        // }
-        $files = ['bird_img_path', 'image_path'];
-            foreach ($files as $file) {
-                if ($request->file($file)) {
-                    $uploadedPath = Cloudinary::upload($request->file($file)->getRealPath())->getSecurePath();
-                    $input[$file] = $uploadedPath;
-                }
-            }
-                
-        return view('profile.edit', [
-            'user' => $request->user(),
-            'prefectures' => $prefecture,
-            'ages' => $user
-        ]);
+        $user = Auth::user();
+        return view('profile.edit')->with(['user' => $user, 'prefectures' => $prefecture->get()]);
     }
-
+    
+    public function show(User $user) //プロフィール表示
+    {
+        $user = Auth::user();
+        return view('profile.show')->with(['user' => $user]);
+        // dd($user)
+    }
+    
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(ProfileUpdateRequest $request): RedirectResponse //プロフィール編集
     {
+        if($request->file('image_path')){
+            $image_url = Cloudinary::upload($request->file('image_path')->getRealPath())->getSecurePath();
+            $request->user()->image_path = $image_url;
+        }
+    
         $request->user()->fill($request->validated());
 
         if ($request->user()->isDirty('email')) {
@@ -62,7 +49,7 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('profile.show');
     }
 
     /**

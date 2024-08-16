@@ -13,8 +13,17 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
     
     //1対多
+    // public function bird_picture(){
+    //     return $this->belongsTo(BirdPicture::class);
+    // }
+    
+    //多対多
     public function bird_pictures(){
-        return $this->hasMany(BirdPicture::class);
+        return $this->belongsToMany(BirdPicture::class);
+    }
+    //多対多
+    public function user_bird_pictures(){
+        return $this->hasMany(UserBirdPicture::class);
     }
     
     //1対多
@@ -64,7 +73,7 @@ class User extends Authenticatable
         'prefecture_id',
         'bird_picture_id',
         'self_introduction',
-        'gender'.
+        'gender',
         'age',
         'favorite_bird',
         'bird_watching',

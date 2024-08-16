@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bird_pictures', function (Blueprint $table) { //お気に入りの鳥画像
+        Schema::create('user_bird_pictures', function (Blueprint $table) {
             $table->id();
-            $table->string('bird_img_path')->nullable();
-            //$table->timestamps();
+            $table->timestamps();
+            $table->foreignId('bird_picture_id')->constrained();
+            $table->foreignId('user_id')->constrained();
         });
     }
 
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bird_pictures');
+        Schema::dropIfExists('user_bird_pictures');
     }
 };

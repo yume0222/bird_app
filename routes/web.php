@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController; //PostControllerクラスをインポート
 use App\Http\Controllers\CategoryController; //CategoryControllerクラスをインポート
 use App\Http\Controllers\PetBirdPostController; //PetBirdPostControllerクラスをインポート
+use App\Http\Controllers\UserController; //PetBirdPostControllerクラスをインポート
+use App\Http\Controllers\BirdPictureController; ///BirdPicturControllerクラスをインポート
 
 /*
 |--------------------------------------------------------------------------
@@ -32,14 +34,18 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
     Route::delete('/posts/{post}', 'delete')->name('delete'); //削除
 });
 
+
 //Route::get('/', function () {
     //return view('welcome');
 //});
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/profile/show', [ProfileController::class, 'show'])->name('profile.show'); //プロフィール表示
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit'); //プロフィール編集画面表示
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile/picture', [BirdPictureController::class, 'picture'])->name('profile.picture'); //画像登録画面表示
+    Route::post('/profile/store', [BirdPictureController::class, 'store'])->name('profile.store'); //画像保存
 });
 
 require __DIR__.'/auth.php';
