@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             MessageSeeder::class,
             PetBirdPostSeeder::class,
             WildBirdPostSeeder::class,
+            UserBirdPictureSeeder::class,
         ]);
     }
 }

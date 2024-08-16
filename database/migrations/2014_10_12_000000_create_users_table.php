@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 20); //名前
             $table->string('self_introduction', 200)->nullable(); //自己紹介
-            $table->enum('gender', ['男性', '女性'])->nullable(); //性別(ラジオボタン)
+            $table->integer('gender')->nullable(); //性別(ラジオボタン)
             $table->integer('age')->nullable(); //年齢(ドロップダウン)
             $table->string('favorite_bird', 100)->nullable(); //質問・好きな鳥
             $table->string('my_pet', 100)->nullable(); //質問・愛鳥
@@ -29,7 +29,7 @@ return new class extends Migration
             //'prefecture_id' は 'prefecturesテーブル' の 'id' を参照する外部キー
             $table->foreignId('prefecture_id')->nullable()->constrained();
             //'bird_picture_id' は 'bird_picturesテーブル' の 'id' を参照する外部キー
-            $table->foreignId('bird_picture_id')->nullable()->constrained();
+            //$table->foreignId('bird_picture_id')->nullable()->constrained();
         });
     }
 
