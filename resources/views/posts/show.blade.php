@@ -14,6 +14,7 @@
             <!--カテゴリーごとに表示を切り替え-->
             @if ($category == 1) <!--愛鳥-->
                 <p>{{ $post->user->name }}</p>
+                <img src="{{ $post->user->image_path }}" alt="画像が読み込めません。">
                 <p>{{ $post->created_at }}</p>
                 <p>種類</p>
                 <p>{{ $post->pet_bird_post->type }}</p>
@@ -28,14 +29,15 @@
                 <p>本文</p>
                 <p>{{ $post->body }}</p>
                 <p>画像</p>
-                @if($post->image_url)
+                @if($post->post_picture_path)
                     <div>
-                        <img src="{{ $post->image_url }}" alt="画像が読み込めません。">
+                        <img src="{{ $post->post_picture_path }}" alt="画像が読み込めません。">
                     </div>
                 @endif
             
             @elseif ($category == 2) <!--野鳥-->
                 <p>{{ $post->user->name }}</p>
+                <img src="{{ $post->user->image_path }}" alt="画像が読み込めません。">
                 <p>{{ $post->created_at }}</p>
                 <p>種類</p>
                 <p>{{ $post->wild_bird_post->type }}</p>
@@ -45,14 +47,16 @@
                 <p>{{ $post->wild_bird_post->location_detail }}</p>
                 <p>本文</p>
                 <p>{{ $post->body }}</p><p>画像</p>
-                @if($post->image_url)
+                <p>画像</p>
+                @if($post->post_picture_path)
                     <div>
-                        <img src="{{ $post->image_url }}" alt="画像が読み込めません。">
+                        <img src="{{ $post->post_picture_path }}" alt="画像が読み込めません。">
                     </div>
                 @endif
             
             @elseif ($category == 3) <!--イベント-->
                 <p>{{ $post->user->name }}</p>
+                <img src="{{ $post->user->image_path }}" alt="画像が読み込めません。">
                 <p>{{ $post->created_at }}</p>
                 <p>イベント名</p>
                 <p>{{ $post->event_post->name }}</p>
@@ -64,14 +68,16 @@
                 <p>{{ $post->event_post->location_detail }}</p>
                 <p>本文</p>
                 <p>{{ $post->body }}</p><p>画像</p>
-                @if($post->image_url)
+                <p>画像</p>
+                @if($post->post_picture_path)
                     <div>
-                        <img src="{{ $post->image_url }}" alt="画像が読み込めません。">
+                        <img src="{{ $post->post_picture_path }}" alt="画像が読み込めません。">
                     </div>
                 @endif
             
             @elseif ($category == 4) <!--迷子-->
                 <p>{{ $post->user->name }}</p>
+                <img src="{{ $post->user->image_path }}" alt="画像が読み込めません。">
                 <p>{{ $post->created_at }}</p>
                 <p>日付</p> <!--ドロップダウン-->
                 <p>{{ $post->lost_bird_post->discovery_date }}</p>
@@ -88,21 +94,22 @@
                 <p>本文</p>
                 <p>{{ $post->body }}</p>
                 <p>画像</p>
-                @if($post->image_url)
+                @if($post->post_picture_path)
                     <div>
-                        <img src="{{ $post->image_url }}" alt="画像が読み込めません。">
+                        <img src="{{ $post->post_picture_path }}" alt="画像が読み込めません。">
                     </div>
                 @endif
             
             @elseif ($category == 5 || $category == 6) <!--雑談、相談-->
                 <p>{{ $post->user->name }}</p>
+                <img src="{{ $post->user->image_path }}" alt="画像が読み込めません。">
                 <p>{{ $post->created_at }}</p>
                 <p>本文</p>
                 <p>{{ $post->body }}</p>
                 <p>画像</p>
-                @if($post->image_url)
+                @if($post->post_picture_path)
                     <div>
-                        <img src="{{ $post->image_url }}" alt="画像が読み込めません。">
+                        <img src="{{ $post->post_picture_path }}" alt="画像が読み込めません。">
                     </div>
                 @endif
             @endif

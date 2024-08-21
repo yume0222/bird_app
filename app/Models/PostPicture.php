@@ -9,12 +9,20 @@ class PostPicture extends Model
 {
     use HasFactory;
     
-    protected $fillable = [
-       'image_path',
-    ]; //投稿を保存
+    // protected $fillable = [
+    //   'image_path',
+    // ]; //投稿を保存
     
+    // //1対多
+    // public function post(){
+    //     return $this->belongsTo(Post::class);
+    // }
     //1対多
     public function post(){
         return $this->belongsTo(Post::class);
+    }
+    //1対多
+    public function picture(){
+        return $this->belongsTo(Picture::class);
     }
 }

@@ -13,6 +13,7 @@ class Post extends Model
     
     protected $fillable = [
         'body',
+        'post_picture_path',
         'category_id',
         'user_id',
     ]; //投稿を保存
@@ -27,7 +28,15 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
     
-    //1対多
+    // //1対多
+    // public function post_pictures(){
+    //     return $this->hasMany(PostPicture::class);
+    // }
+    //多対多
+    public function pictures(){
+        return $this->belongsToMany(Picture::class);
+    }
+    //多対多
     public function post_pictures(){
         return $this->hasMany(PostPicture::class);
     }

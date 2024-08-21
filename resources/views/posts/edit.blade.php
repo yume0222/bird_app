@@ -39,6 +39,10 @@
                     <input type="text" name="pet_bird_post[special_skil]" value="{{ $post->pet_bird_post->special_skil }}">
                     <p>本文</p>
                     <textarea name="post[body]" value="{{ $post->body }}">{{ $post->body }}</textarea>
+                    <p>画像</p>
+                    <div class="image">
+                        <input type="file" name="image" value="{{ $post->post_picture_path }}">
+                    </div>
                 
                 @elseif ($category == 2) <!--野鳥-->
                     <input type="hidden" name="wild_bird_post[id]" value="{{ $post->wild_bird_post->id }}">
@@ -58,6 +62,10 @@
                     <input type="text" name="wild_bird_post[location_detail]" value="{{ $post->wild_bird_post->location_detail }}">
                     <p>本文</p>
                     <textarea name="post[body]" value="{{ $post->body }}">{{ $post->body }}</textarea>
+                    <p>画像</p>
+                    <div class="image">
+                        <input type="file" name="image" value="{{ $post->post_picture_path }}">
+                    </div>
                 
                 @elseif ($category == 3) <!--イベント-->
                     <input type="hidden" name="event_post[id]" value="{{ $post->event_post->id }}">
@@ -79,6 +87,10 @@
                     <input type="text" name="event_post[location_detail]" value="{{ $post->event_post->location_detail }}">
                     <p>本文</p>
                     <textarea name="post[body]" value="{{ $post->body }}">{{ $post->body }}</textarea>
+                    <p>画像</p>
+                    <div class="image">
+                        <input type="file" name="image" value="{{ $post->post_picture_path }}">
+                    </div>
                 
                 @elseif ($category == 4) <!--迷子-->
                     <input type="hidden" name="lost_bird_post[id]" value="{{ $post->lost_bird_post->id }}">
@@ -113,10 +125,18 @@
                     <input type="text" name="lost_bird_post[characteristics]" value="{{ $post->lost_bird_post->characteristics }}">
                     <p>本文</p>
                     <textarea name="post[body]" value="{{ $post->body }}">{{ $post->body }}</textarea>
+                    <p>画像</p>
+                    <div class="image">
+                        <input type="file" name="image" value="{{ $post->post_picture_path }}">
+                    </div>
                 
                 @elseif ($category == 5 || $category == 6) <!--雑談、相談-->
                     <p>本文</p>
                     <textarea name="post[body]" value="{{ $post->body }}">{{ $post->body }}</textarea>
+                    <p>画像</p>
+                    <div class="image">
+                        <input type="file" name="image" value="{{ $post->post_picture_path }}">
+                    </div>
                 @endif
             </div>
             <input type="submit" value="保存">

@@ -109,6 +109,11 @@
         <div>
             <p>お気に入りの鳥写真</p>
             <p><a href="/profile/picture">お気に入りの鳥写真のリンク</a></p>
+            @foreach($user->user_bird_pictures as $user_bird_picture)
+                <div>
+                    <img src="{{ $user_bird_picture->bird_picture->bird_img_path }}" alt="画像が読み込めません。">
+                </div>
+            @endforeach
         </div>
 
         <div class="flex items-center gap-4">

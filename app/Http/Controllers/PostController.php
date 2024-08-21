@@ -11,7 +11,6 @@ use App\Models\WildBirdPost; //WildBirdPostモデルをインポート
 use App\Models\EventPost; //EventPostモデルをインポート
 use App\Models\LostBirdPost; //LostBirdPostモデルをインポート
 use App\Models\Prefecture; //Prefectureモデルをインポート
-use App\Models\PostPicture; //PostPictureモデルをインポート
 use Illuminate\Support\Facades\Auth; //Auth
 use Cloudinary; //画像
 
@@ -73,15 +72,13 @@ class PostController extends Controller
     
     public function store(Request $request, Post $post, Category $category, PetBirdPost $pet_bird_post, WildBirdPost $wild_bird_post, Prefecture $prefecture, EventPost $event_post, LostBirdPost $lost_bird_post)
     {
-        //画像
-        // if($request->file('image')){
-        //     $image_url = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
-        //     $input += ['image_url' => $image_url];
-        // }
-        
         $categoryId = $category->id;
         
         $input = $request->all();
+        if($request->file('image')){ //画像ファイルが送られた時だけ処理が実行
+            $image_url = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+            $input['post']['post_picture_path'] = $image_url;
+        }
         $input['post']['user_id'] = Auth::id();
         $input['post']['category_id'] = $categoryId;
         $new_post = Post::create($input['post']);
@@ -168,10 +165,20 @@ class PostController extends Controller
         $input_post = $request->all();
         $post->update(['body' => $input_post['post']['body']]);
         
+    
+        if ($request->file('image')) {
+            $image_url = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+            $input_post['post']['image'] = $image_url;
+        }
+        $post->update(['post_picture_path' => $input_post['post']['post_picture_path']]);
+        
+    
+        
         switch ($categoryId) {
             case 1:
                 $input_post = $request->validate([
                     'post.body' => 'required|string|min:1|max:200',
+                    'post.post_picture_path' => 'nullable',
                     'pet_bird_post.id' => 'required',
                     'pet_bird_post.type' => 'required|string|min:1|max:50',
                     'pet_bird_post.personality' => 'required|string|min:1|max:100',
@@ -244,11 +251,71 @@ class PostController extends Controller
         }
         return redirect('/posts/' . $post->id);
     }
-
+    
     public function delete(Post $post) //削除
     {
         $post->delete();
         return redirect('/');
     }
+    
+    public function categorySearch(Category $category) //検索にカテゴリー名を表示
+    {
+        return view('posts.select_category_search')->with(['categories' => $category->get()]);
+    }
+    
+    public function search(Category $category, Post $post, PetBirdPost $pet_bird_post, LostBirdPost $lost_bird_post, Prefecture $prefecture) //検索画面
+    {
+        return view('posts.search')->with(['posts' => $post, 'category' => $category, 'pet_bird_posts' => $pet_bird_post->get(), 'lost_bird_posts' => $lost_bird_post->get(), 'prefectures' => $prefecture->get()]);
+    }
+    
+    public function result(Request $request, Category $category, Post $post) //検索一覧結果
+    {
+        $categoryId = $post->category_id;
+        
+        switch ($categoryId) {
+            case 4:
+                $request->validate([
+                'lost_bird_post.text' => 'nullable',
+                'lost_bird_post.discovery_date' => 'nullable',
+                'lost_bird_post.prefecture' => 'nullable',
+                'keyword' => 'nullable|string|max:255',
+            ]);
+            $discovery_date = $request->input('lost_bird_post.discovery_date');
+            $text = $request->input('lost_bird_post.text');
+            $prefecture = $request->input('lost_bird_post.prefecture');
+            $keyword = $request->input('keyword');
+            
+            $lost_bird_posts = Post::query();
+            if (!empty($discovery_date)) {
+                $lost_bird_posts->whereHas('lost_bird_post', function($query) use ($discovery_date) {
+                    $query->where('lost_bird_post.discovery_date', $discovery_date);
+                });
+            }
+            
+            if (!empty($text)) {
+                $lost_bird_posts->whereHas('lost_bird_post', function($query) use ($text) {
+                    $query->where('lost_bird_post.discovery_date', $text);
+                });
+            }
+            if (!empty($prefecture)) {
+                $lost_bird_posts->whereHas('lost_bird_post', function($query) use ($prefecture) {
+                    $query->where('lost_bird_post.prefecture.name', $prefecture);
+                });
+            }
+            if (!empty($keyword)) {
+                $lost_bird_posts->whereHas('lost_bird_post', function($query) use ($keyword) {
+                    $query->where('lost_bird_post.location_detail', $keyword, 'LIKE', '%' . $keyword . '%')
+                          ->where('lost_bird_post.type', $keyword, 'LIKE', '%' . $keyword . '%')
+                          ->where('lost_bird_post.characteristics', $keyword, 'LIKE', '%' . $keyword . '%')
+                          ->where('post.body', $keyword, 'LIKE', '%' . $keyword . '%');
+                });
+            }
+            $lost_bird_post_ids = $lost_bird_posts->pluck('id');
+            $posts = Post::whereIn('id', $lost_bird_post_ids)->get();
+            break;
+        }
+        return view('posts.result', ['posts' => $posts->getPaginateByLimit()]);
+    }
+    
     
 }

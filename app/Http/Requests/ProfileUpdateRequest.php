@@ -17,14 +17,14 @@ class ProfileUpdateRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'self_introduction' => ['required', 'string', 'max:255'],
-            'gender' => ['required', 'integer', 'max:255'],
-            'age' => ['required', 'integer', 'max:255'],
-            'favorite_bird' => ['required', 'string', 'max:255'],
-            'my_pet' => ['required', 'string', 'max:255'],
-            'bird_watching' => ['required', 'string', 'max:255'],
-            // 'image_path' => ['required', 'string', 'max:255'],
-            'prefecture_id' => ['required'],
+            'self_introduction' => ['string', 'max:255'],
+            'gender' => ['integer', 'max:255'],
+            'age' => ['integer', 'max:255'],
+            'favorite_bird' => ['string', 'max:255'],
+            'my_pet' => ['string', 'max:255'],
+            'bird_watching' => ['string', 'max:255'],
+            // 'image_path' => [''],
+            'prefecture_id' => [''],
             //'bird_picture_id' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
         ];

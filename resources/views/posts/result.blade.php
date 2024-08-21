@@ -1,4 +1,4 @@
-<!DOCTYPE HTML> <!--投稿一覧-->
+<!DOCTYPE HTML> <!--検索結果-->
 <html lang="ja">
     <head>
         <meta charset="utf-8">
@@ -8,6 +8,10 @@
     <body>
         <h1>Post</h1>
         <div class="posts">
+             @if($posts->isEmpty())
+                <p>投稿が見つかりませんでした。</p>
+            @else
+            
             @foreach ($posts as $post)
                 <!--カテゴリー名を表示-->
                 <p>カテゴリー</p>
@@ -119,28 +123,12 @@
                     </div>
                 @endif
             @endif
-            
-            <!--削除-->
-            <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
-                @csrf
-                @method('DELETE')
-                <button type="button" onclick="deletePost({{ $post->id }})">delete</button> 
-            </form>
             @endforeach
+            
+            @endif
         </div>
-        <a href='/posts/category'>create</a> <!--投稿作成に遷移-->
         <div class='paginate'>
             {{ $posts->links() }} <!--ペジネーション-->
         </div>
-        
-        <script> //削除
-            function deletePost(id) {
-                'use strict'
-
-                if (confirm('削除しますか？')) {
-                    document.getElementById(`form_${id}`).submit();
-                }
-            }
-        </script>
     </body>
 </html>

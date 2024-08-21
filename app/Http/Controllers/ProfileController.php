@@ -28,7 +28,6 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         return view('profile.show')->with(['user' => $user]);
-        // dd($user)
     }
     
     /**

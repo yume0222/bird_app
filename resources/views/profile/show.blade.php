@@ -40,7 +40,22 @@
             <div>
                 <img src="{{ $user_bird_picture->bird_picture->bird_img_path }}" alt="画像が読み込めません。">
             </div>
+            <form action="/bird_pictures/{{ $user_bird_picture->bird_picture->id }}" id="form_{{ $user_bird_picture->bird_picture->id }}" method="post">
+                @csrf
+                @method('DELETE')
+                <button type="button" onclick="deletePicture({{ $user_bird_picture->bird_picture->id }})">delete</button> 
+            </form>
         @endforeach
         <a href='/profile/edit'>edit</a> <!--プロフィール編集に遷移-->
+        
+        <script> //削除
+            function deletePicture(id) {
+                'use strict'
+
+                if (confirm('削除しますか？')) {
+                    document.getElementById(`form_${id}`).submit();
+                }
+            }
+        </script>
     </body>
 </html>
