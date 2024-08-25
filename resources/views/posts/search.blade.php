@@ -61,7 +61,7 @@
                     <!--        @endforeach-->
                     <!--</select>--}}
                     <select name="lost_bird_post[text]">
-                      <option value="" disabled selected>ステータスを選択してください</option>
+                      <option value="" selected>ステータスを選択してください</option>
                       <option value="迷子">迷子</option>
                       <option value="目撃">目撃</option>
                       <option value="保護">保護</option>
