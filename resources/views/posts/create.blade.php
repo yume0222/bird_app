@@ -101,13 +101,19 @@
                     <input type="date" id="start" name="lost_bird_post[discovery_date]" value="{{ old('lost_bird_post.discovery_date') }}" min="2018-01-01" max="2024-12-31" />
                     <p class="title__error" style="color:red">{{ $errors->first('lost_bird_post.discovery_date') }}</p>
                     <p>ステータス</p> <!--ドロップダウン-->
+                    {{--<select name="lost_bird_post[text]">-->
+                    <!--    <option value="" disabled selected>ステータスを選択してください</option>-->
+                    <!--        @foreach ($lost_bird_posts as $lost_bird_post)-->
+                    <!--            <option value="{{ $lost_bird_post->text }}" {{ old('lost_bird_post.text') == $lost_bird_post->id ? 'selected' : '' }}>-->
+                    <!--                {{ $lost_bird_post->text }}-->
+                    <!--            </option>-->
+                    <!--        @endforeach-->
+                    <!--</select>--}}
                     <select name="lost_bird_post[text]">
-                        <option value="" disabled selected>ステータスを選択してください</option>
-                            @foreach ($lost_bird_posts as $lost_bird_post)
-                                <option value="{{ $lost_bird_post->text }}" {{ old('lost_bird_post.text') == $lost_bird_post->id ? 'selected' : '' }}>
-                                    {{ $lost_bird_post->text }}
-                                </option>
-                            @endforeach
+                      <option value="" disabled selected>ステータスを選択してください</option>
+                      <option value="迷子">迷子</option>
+                      <option value="保護">保護</option>
+                      <option value="目撃">目撃</option>
                     </select>
                     <p class="title__error" style="color:red">{{ $errors->first('lost_bird_post.text') }}</p>
                     <p>場所</p> <!--ドロップダウン-->
