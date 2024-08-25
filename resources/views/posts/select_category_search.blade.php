@@ -1,4 +1,4 @@
-<!--<!DOCTYPE HTML> <!--検索・カテゴリー選択画面-->-->
+<!--<!DOCTYPE HTML> <!--検索・カテゴリー選択画面-->
 <!--<html lang="ja">-->
 <!--    <head>-->
 <!--        <meta charset="utf-8">-->
