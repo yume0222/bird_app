@@ -8,7 +8,7 @@
     <body>
         <h1>Post</h1>
         <div class="posts">
-             @if($posts->isEmpty())
+             @if(count($posts) == 0)
                 <p>投稿が見つかりませんでした。</p>
             @else
             
@@ -126,9 +126,6 @@
             @endforeach
             
             @endif
-        </div>
-        <div class='paginate'>
-            {{ $posts->links() }} <!--ペジネーション-->
         </div>
     </body>
 </html>
