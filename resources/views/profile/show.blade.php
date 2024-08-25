@@ -9,8 +9,15 @@
         <p>プロフィール画像</p>
         @if($user->image_path)
             <div>
-                <img src="{{ $user->image_path }}" alt="画像が読み込めません。">
+                <img src="{{ $user->image_path }}">
             </div>
+            <form action="/profile_picture/{{ $user->id }}" id="image_path" method="post">
+                @csrf
+                @method('DELETE')
+                <button type="button" onclick="deleteProfilePicture()">delete</button>
+            </form>
+        @else
+            <p>ピヨ</p> <!--仮-->
         @endif
         <p>名前</p>
         {{ $user->name }}
@@ -49,11 +56,20 @@
         <a href='/profile/edit'>edit</a> <!--プロフィール編集に遷移-->
         
         <script> //削除
+            //お気に入りの鳥写真
             function deletePicture(id) {
                 'use strict'
 
                 if (confirm('削除しますか？')) {
                     document.getElementById(`form_${id}`).submit();
+                }
+            }
+            //プロフィール写真
+            function deleteProfilePicture() {
+                'use strict'
+
+                if (confirm('削除しますか？')) {
+                    document.getElementById('image_path').submit();
                 }
             }
         </script>

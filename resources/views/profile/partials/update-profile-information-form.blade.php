@@ -47,7 +47,7 @@
         <div>
             <x-input-label for="gender" :value="__('年齢')" />
             <select name="age">
-                <option value="" disabled selected>年齢を選択してください</option>
+                <option value="" disabled>年齢を選択してください</option>
                     @foreach(range(1, 100) as $age)
                         <option value="{{ $age }}" {{ old('age', $user->age) == $age ? 'selected' : '' }} autofocus autocomplete="age" />
                             {{ $age }}
@@ -59,7 +59,7 @@
         <div>
             <x-input-label for="name" :value="__('都道府県')" />
             <select name="prefecture_id">
-                <option value="" disabled selected>都道府県を選択してください</option>
+                <option value="" disabled>都道府県を選択してください</option>
                     @foreach ($prefectures as $prefecture)
                         <option value="{{ $prefecture->id }}" {{ old('prefecture' , $user->name) == $prefecture->id ? 'selected' : '' }} autofocus autocomplete="prefecture" />
                             {{ $prefecture->name }}

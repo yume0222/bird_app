@@ -50,6 +50,19 @@ class ProfileController extends Controller
 
         return Redirect::route('profile.show');
     }
+    
+    public function destroyProfilePicture(User $user) //プロフィール画像削除
+    {
+        $user = Auth::user();
+        $user['image_path'] = null;
+        $user->save();
+        return redirect('/profile/show');
+    }
+    
+    public function showUser(User $user) //各ユーザのプロフィール表示
+    {
+        return view('profile.show_user')->with(['user' => $user]);
+    }
 
     /**
      * Delete the user's account.
