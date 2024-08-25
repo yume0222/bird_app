@@ -1,9 +1,4 @@
 <x-app-layout>
-    <x-slot name="header">
-        <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
-                        {{ __('Post') }}
-                    </x-nav-link>
-    </x-slot>
         <h1>Post</h1>
         <div class="posts">
             @foreach ($posts as $post)
