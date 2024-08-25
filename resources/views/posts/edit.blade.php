@@ -7,7 +7,7 @@
     </head>
     <body>
         <h1>Post</h1>
-        <form action="/posts/{{ $post->id }}" method="POST">
+        <form action="/posts/{{ $post->id }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="body">
@@ -19,6 +19,7 @@
                     <input type="hidden" name="pet_bird_post[id]" value="{{ $post->pet_bird_post->id }}">
                     <p>種類</p>
                     <input type="text" name="pet_bird_post[type]" value="{{ $post->pet_bird_post->type }}">
+                    <p class="title__error" style="color:red">{{ $errors->first('pet_bird_post.type') }}</p>
                     <p>性別</p> <!--ラジオボタン-->
                     <div class="form-check">
                         <input type="radio" name="pet_bird_post[gender]" id="雄" value="雄" 
@@ -35,18 +36,26 @@
                     <input type="date" id="start" value="{{ $post->pet_bird_post->birthday }}" name="pet_bird_post[birthday]" min="2018-01-01" max="2024-12-31" />
                     <p>性格</p>
                     <input type="text" name="pet_bird_post[personality]" value="{{ $post->pet_bird_post->personality }}">
+                    <p class="title__error" style="color:red">{{ $errors->first('pet_bird_post.personality') }}</p>
                     <p>特技</p>
                     <input type="text" name="pet_bird_post[special_skil]" value="{{ $post->pet_bird_post->special_skil }}">
+                    <p class="title__error" style="color:red">{{ $errors->first('pet_bird_post.special_skil') }}</p>
                     <p>本文</p>
                     <textarea name="post[body]" value="{{ $post->body }}">{{ $post->body }}</textarea>
+                    <p class="body__error" style="color:red">{{ $errors->first('post.body') }}</p>
+                    <p>画像</p>
+                    <div class="image">
+                        <input type="file" name="image" value="{{ $post->post_picture_path }}">
+                    </div>
                 
                 @elseif ($category == 2) <!--野鳥-->
                     <input type="hidden" name="wild_bird_post[id]" value="{{ $post->wild_bird_post->id }}">
                     <p>種類</p>
                     <input type="text" name="wild_bird_post[type]" value="{{ $post->wild_bird_post->type }}">
+                    <p class="title__error" style="color:red">{{ $errors->first('wild_bird_post.type') }}</p>
                     <p>場所</p> <!--ドロップダウン-->
                     <select name="wild_bird_post[prefecture]">
-                        <!--<option value="" disabled selected>都道府県を選択してください</option>-->
+                        <option value="" disabled>都道府県を選択してください</option>
                         <option value="{{ $post->wild_bird_post->prefecture->id }}">{{ $post->wild_bird_post->prefecture->name }}</option>
                             @foreach ($prefectures as $prefecture)
                                 <option value="{{ $prefecture->id }}" {{ old('post.prefecture') == $prefecture->id ? 'selected' : '' }}>
@@ -54,20 +63,29 @@
                                 </option>
                             @endforeach
                     </select>
+                    <p class="title__error" style="color:red">{{ $errors->first('wild_bird_post.prefecture') }}</p>
                     <p>詳細場所</p>
                     <input type="text" name="wild_bird_post[location_detail]" value="{{ $post->wild_bird_post->location_detail }}">
+                    <p class="title__error" style="color:red">{{ $errors->first('wild_bird_post.location_detail') }}</p>
                     <p>本文</p>
                     <textarea name="post[body]" value="{{ $post->body }}">{{ $post->body }}</textarea>
+                    <p class="body__error" style="color:red">{{ $errors->first('post.body') }}</p>
+                    <p>画像</p>
+                    <div class="image">
+                        <input type="file" name="image" value="{{ $post->post_picture_path }}">
+                    </div>
                 
                 @elseif ($category == 3) <!--イベント-->
                     <input type="hidden" name="event_post[id]" value="{{ $post->event_post->id }}">
                     <p>イベント名</p>
                     <input type="text" name="event_post[name]" value="{{ $post->event_post->name }}">
+                    <p class="title__error" style="color:red">{{ $errors->first('event_post.name') }}</p>
                     <p>開催日</p> <!--ドロップダウン-->
                     <input type="date" id="start" value="{{ $post->event_post->start_date }}" name="event_post[start_date]" min="2018-01-01" max="2024-12-31" />
+                    <p class="title__error" style="color:red">{{ $errors->first('event_post.start_date') }}</p>
                     <p>場所</p> <!--ドロップダウン-->
                     <select name="event_post[prefecture]">
-                        <!--<option value="" disabled selected>都道府県を選択してください</option>-->
+                        <option value="" disabled>都道府県を選択してください</option>
                         <option value="{{ $post->event_post->prefecture->id }}">{{ $post->event_post->prefecture->name }}</option>
                             @foreach ($prefectures as $prefecture)
                                 <option value="{{ $prefecture->id }}" {{ old('post.prefecture') == $prefecture->id ? 'selected' : '' }}>
@@ -75,29 +93,43 @@
                                 </option>
                             @endforeach
                     </select>
+                    <p class="title__error" style="color:red">{{ $errors->first('event_post.prefecture') }}</p>
                     <p>詳細場所</p>
                     <input type="text" name="event_post[location_detail]" value="{{ $post->event_post->location_detail }}">
+                    <p class="title__error" style="color:red">{{ $errors->first('event_post.location_detail') }}</p>
                     <p>本文</p>
                     <textarea name="post[body]" value="{{ $post->body }}">{{ $post->body }}</textarea>
+                    <p class="body__error" style="color:red">{{ $errors->first('post.body') }}</p>
+                    <p>画像</p>
+                    <div class="image">
+                        <input type="file" name="image" value="{{ $post->post_picture_path }}">
+                    </div>
                 
                 @elseif ($category == 4) <!--迷子-->
                     <input type="hidden" name="lost_bird_post[id]" value="{{ $post->lost_bird_post->id }}">
                     <p>日付</p> <!--ドロップダウン-->
                     <input type="date" id="start" value="{{ $post->lost_bird_post->discovery_date }}" name="lost_bird_post[discovery_date]" min="2018-01-01" max="2024-12-31" />
+                    <p class="title__error" style="color:red">{{ $errors->first('lost_bird_post.discovery_date') }}</p>
                     <p>ステータス</p> <!--ドロップダウン-->
-                    <select name="lost_bird_post[text]">
+                    {{--<select name="lost_bird_post[text]">-->
                         <!--<option value="" disabled selected>ステータスを選択してください</option>-->
-                        <option value="{{ $post->lost_bird_post->id }}">{{ $post->lost_bird_post->text }}</option>
-                            @foreach ($lost_bird_posts as $lost_bird_post)
-                                <option value="{{ $lost_bird_post->id }}" {{ old('lost_bird_post.text') == $lost_bird_post->id ? 'selected' : '' }}>
-                                    {{ $lost_bird_post->text }}
-                                </option>
-                            @endforeach
+                    <!--    <option value="{{ $post->lost_bird_post->id }}">{{ $post->lost_bird_post->text }}</option>-->
+                    <!--        @foreach ($lost_bird_posts as $lost_bird_post)-->
+                    <!--            <option value="{{ $lost_bird_post->id }}" {{ old('lost_bird_post.text') == $lost_bird_post->id ? 'selected' : '' }}>-->
+                    <!--                {{ $lost_bird_post->text }}-->
+                    <!--            </option>-->
+                    <!--        @endforeach-->
+                    <!--</select>--}}
+                    <select name="lost_bird_post[text]">
+                        <option value="" disabled selected>ステータスを選択してください</option>
+                        <option value="迷子" {{ old('lost_bird_post.text', $post->lost_bird_post->text) == '迷子' ? 'selected' : '' }}>迷子</option>
+                        <option value="保護" {{ old('lost_bird_post.text', $post->lost_bird_post->text) == '保護' ? 'selected' : '' }}>保護</option>
+                        <option value="目撃" {{ old('lost_bird_post.text', $post->lost_bird_post->text) == '目撃' ? 'selected' : '' }}>目撃</option>
                     </select>
                     <p class="title__error" style="color:red">{{ $errors->first('lost_bird_post.text') }}</p>
                     <p>場所</p> <!--ドロップダウン-->
                     <select name="lost_bird_post[prefecture]">
-                        <!--<option value="" disabled selected>都道府県を選択してください</option>-->
+                        <option value="" disabled>都道府県を選択してください</option>
                         <option value="{{ $post->lost_bird_post->prefecture->id }}">{{ $post->lost_bird_post->prefecture->name }}</option>
                             @foreach ($prefectures as $prefecture)
                                 <option value="{{ $prefecture->id }}" {{ old('post.prefecture') == $prefecture->id ? 'selected' : '' }}>
@@ -105,18 +137,32 @@
                                 </option>
                             @endforeach
                     </select>
+                    <p class="title__error" style="color:red">{{ $errors->first('lost_bird_post.prefecture') }}</p>
                     <p>詳細場所</p>
                     <input type="text" name="lost_bird_post[location_detail]" value="{{ $post->lost_bird_post->location_detail }}">
+                    <p class="title__error" style="color:red">{{ $errors->first('lost_bird_post.location_detail') }}</p>
                     <p>種類</p>
                     <input type="text" name="lost_bird_post[type]" value="{{ $post->lost_bird_post->type }}">
+                    <p class="title__error" style="color:red">{{ $errors->first('lost_bird_post.type') }}</p>
                     <p>特徴</p>
                     <input type="text" name="lost_bird_post[characteristics]" value="{{ $post->lost_bird_post->characteristics }}">
+                    <p class="title__error" style="color:red">{{ $errors->first('lost_bird_post.characteristics') }}</p>
                     <p>本文</p>
                     <textarea name="post[body]" value="{{ $post->body }}">{{ $post->body }}</textarea>
+                    <p class="body__error" style="color:red">{{ $errors->first('post.body') }}</p>
+                    <p>画像</p>
+                    <div class="image">
+                        <input type="file" name="image" value="{{ $post->post_picture_path }}">
+                    </div>
                 
                 @elseif ($category == 5 || $category == 6) <!--雑談、相談-->
                     <p>本文</p>
                     <textarea name="post[body]" value="{{ $post->body }}">{{ $post->body }}</textarea>
+                    <p class="body__error" style="color:red">{{ $errors->first('post.body') }}</p>
+                    <p>画像</p>
+                    <div class="image">
+                        <input type="file" name="image" value="{{ $post->post_picture_path }}">
+                    </div>
                 @endif
             </div>
             <input type="submit" value="保存">

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class UserBirdPicture extends Model
 {
     use HasFactory;
+    
     //1対多
     public function user(){
         return $this->belongsTo(User::class);

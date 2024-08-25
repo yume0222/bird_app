@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('pet_bird_posts', function (Blueprint $table) { //愛鳥
             $table->id();
-            $table->string('type', 50); //愛鳥の種類
+            $table->string('type', 100); //愛鳥の種類
             $table->enum('gender', ['雄', '雌'])->nullable(); //愛鳥の性別(ラジオボタン)
             $table->date('birthday')->nullable(); //愛鳥の誕生日（ドロップダウン）
             $table->string('personality', 100); //愛鳥の性格

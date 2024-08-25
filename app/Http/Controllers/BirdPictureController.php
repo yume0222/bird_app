@@ -16,7 +16,7 @@ class BirdPictureController extends Controller
         return view('profile.picture');
     }
     
-    public function store(Request $request, BirdPicture $bird_picture,) //画像保存
+    public function store(Request $request, BirdPicture $bird_picture) //画像保存
     {
         //bird_picturesテーブル（主）に登録
         //画像ファイルが送られた時だけ処理が実行
@@ -41,5 +41,12 @@ class BirdPictureController extends Controller
         $user_bird_picture->save();
 
         return redirect('/profile/edit'); //プロフィール編集にリダイレクト
+    }
+    
+    public function destroyBirdPicture(UserBirdPicture $user_bird_picture, $id) //画像削除
+    {
+        $userBirdPicture = $user_bird_picture->findOrFail($id);
+        $userBirdPicture->delete();
+        return redirect('/profile/show'); //プロフィール画面にリダイレクト
     }
 }

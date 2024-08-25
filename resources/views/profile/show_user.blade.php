@@ -1,4 +1,4 @@
-<!DOCTYPE html> <!--プロフィール表示-->
+<!DOCTYPE html> <!--各ユーザのプロフィール表示-->
 <html lang="ja">
     <head>
         <meta charset="utf-8">
@@ -11,11 +11,6 @@
             <div>
                 <img src="{{ $user->image_path }}">
             </div>
-            <form action="/profile_picture/{{ $user->id }}" id="image_path" method="post">
-                @csrf
-                @method('DELETE')
-                <button type="button" onclick="deleteProfilePicture()">delete</button>
-            </form>
         @else
             <p>ピヨ</p> <!--仮-->
         @endif
@@ -47,31 +42,6 @@
             <div>
                 <img src="{{ $user_bird_picture->bird_picture->bird_img_path }}" alt="画像が読み込めません。">
             </div>
-            <form action="/bird_pictures/{{ $user_bird_picture->bird_picture->id }}" id="form_{{ $user_bird_picture->bird_picture->id }}" method="post">
-                @csrf
-                @method('DELETE')
-                <button type="button" onclick="deletePicture({{ $user_bird_picture->bird_picture->id }})">delete</button> 
-            </form>
         @endforeach
-        <a href='/profile/edit'>edit</a> <!--プロフィール編集に遷移-->
-        
-        <script> //削除
-            //お気に入りの鳥写真
-            function deletePicture(id) {
-                'use strict'
-
-                if (confirm('削除しますか？')) {
-                    document.getElementById(`form_${id}`).submit();
-                }
-            }
-            //プロフィール写真
-            function deleteProfilePicture() {
-                'use strict'
-
-                if (confirm('削除しますか？')) {
-                    document.getElementById('image_path').submit();
-                }
-            }
-        </script>
     </body>
 </html>

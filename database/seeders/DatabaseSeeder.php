@@ -21,7 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call([
             BirdPictureSeeder::class,
             LikeSeeder::class,
-            PostPictureSeeder::class,
             CategorySeeder::class,
             PrefectureSeeder::class,
             UserSeeder::class,

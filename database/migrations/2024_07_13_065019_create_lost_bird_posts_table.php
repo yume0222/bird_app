@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('text'); //ステータス
             $table->string('location_detail', 100); //迷子鳥がいた詳細場所
             $table->string('characteristics', 100); //特徴
-            $table->string('type', 50); //種類
+            $table->string('type', 100); //種類
             $table->timestamps(); //作成日時、更新日時
             $table->softDeletes(); //削除日時
             //'user_id' は 'postsテーブル' の 'id' を参照する外部キー

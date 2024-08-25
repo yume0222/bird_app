@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('event_posts', function (Blueprint $table) { //イベント
             $table->id();
-            $table->string('name', 50); //イベント名
+            $table->string('name', 100); //イベント名
             $table->date('start_date'); //イベント開催日(ドロップダウン)
             $table->string('location_detail', 100); //イベントを開催する詳細場所
             $table->timestamps(); //作成日時、更新日時

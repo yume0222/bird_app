@@ -4,10 +4,9 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController; //PostControllerクラスをインポート
 use App\Http\Controllers\CategoryController; //CategoryControllerクラスをインポート
-use App\Http\Controllers\PetBirdPostController; //PetBirdPostControllerクラスをインポート
-use App\Http\Controllers\UserController; //PetBirdPostControllerクラスをインポート
+use App\Http\Controllers\UserController; //UserControllerクラスをインポート
 use App\Http\Controllers\BirdPictureController; ///BirdPicturControllerクラスをインポート
-
+use App\Http\Controllers\CommentController; ///CommentControllerクラスをインポート
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,8 +31,18 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
     Route::get('/posts/{post}/edit', 'edit')->name('edit'); //編集画面表示
     Route::put('/posts/{post}', 'update')->name('update'); //編集実行
     Route::delete('/posts/{post}', 'delete')->name('delete'); //削除
+    Route::delete('/posts/picture/{post}', 'destroyPostPicture')->name('destroyPostPicture'); //投稿画像削除
+    
+    Route::get('/search/category', 'categorySearch')->name('categorySearch'); //検索にカテゴリー名を表示
+    Route::get('/search/category/{category}', 'search')->name('search'); //検索画面
+    Route::post('/search/category/{category}/result', 'result')->name('result.post'); //検索結果一覧
 });
-
+Route::controller(CommentController::class)->middleware(['auth'])->group(function(){
+    Route::post('/posts/{post}/comment', 'comment')->name('comment'); //コメント保存
+    Route::get('/posts/{post}/{comment}/edit', 'editComment')->name('editComment'); //コメント編集画面表示
+    Route::put('/posts/comment/{comment}/update', 'updateComment')->name('updateComment'); //コメント編集実行
+    Route::delete('/posts/comment/{comment}', 'deleteComment')->name('deleteComment'); //コメント削除
+});
 
 //Route::get('/', function () {
     //return view('welcome');
@@ -42,10 +51,13 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
 Route::middleware('auth')->group(function () {
     Route::get('/profile/show', [ProfileController::class, 'show'])->name('profile.show'); //プロフィール表示
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit'); //プロフィール編集画面表示
+    Route::get('/profile/show/{user}', [ProfileController::class, 'showUser'])->name('profile.showUser'); //各ユーザのプロフィール表示
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/profile/picture', [BirdPictureController::class, 'picture'])->name('profile.picture'); //画像登録画面表示
     Route::post('/profile/store', [BirdPictureController::class, 'store'])->name('profile.store'); //画像保存
+    Route::delete('/bird_pictures/{id}', [BirdPictureController::class, 'destroyBirdPicture'])->name('profile.destroyBirdPicture'); //お気に入りの鳥画像削除
+    Route::delete('/profile_picture/{user}', [ProfileController::class, 'destroyProfilePicture'])->name('profile.destroyProfilePicture'); //プロフィール画像削除
 });
 
 require __DIR__.'/auth.php';

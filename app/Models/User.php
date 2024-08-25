@@ -16,7 +16,6 @@ class User extends Authenticatable
     // public function bird_picture(){
     //     return $this->belongsTo(BirdPicture::class);
     // }
-    
     //多対多
     public function bird_pictures(){
         return $this->belongsToMany(BirdPicture::class);
