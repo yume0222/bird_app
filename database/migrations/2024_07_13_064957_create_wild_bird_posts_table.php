@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('wild_bird_posts', function (Blueprint $table) { //野鳥
             $table->id();
-            $table->string('type', 50); //野鳥の種類
+            $table->string('type', 100); //野鳥の種類
             $table->string('location_detail', 100); //野鳥がいた詳細場所
             $table->timestamps(); //作成日時、更新日時
             $table->softDeletes(); //削除日時
