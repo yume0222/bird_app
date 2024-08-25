@@ -16,8 +16,11 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <!--ナビゲーション追加-->
-                    <x-nav-link :href="route('select')" :active="request()->routeIs('select')">
+                    <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
                         {{ __('Post') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('categorySearch')" :active="request()->routeIs('categorySearch')">
+                        {{ __('Search') }}
                     </x-nav-link>
                     <x-nav-link :href="route('profile.show')" :active="request()->routeIs('profile.show')">
                         {{ __('Profile') }}
