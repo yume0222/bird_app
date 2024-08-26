@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController; //CategoryControllerクラスをイ
 use App\Http\Controllers\UserController; //UserControllerクラスをインポート
 use App\Http\Controllers\BirdPictureController; ///BirdPicturControllerクラスをインポート
 use App\Http\Controllers\CommentController; ///CommentControllerクラスをインポート
+use App\Http\Controllers\LikeController; ///LikeControllerクラスをインポート
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,6 +43,10 @@ Route::controller(CommentController::class)->middleware(['auth'])->group(functio
     Route::get('/posts/{post}/{comment}/edit', 'editComment')->name('editComment'); //コメント編集画面表示
     Route::put('/posts/comment/{comment}/update', 'updateComment')->name('updateComment'); //コメント編集実行
     Route::delete('/posts/comment/{comment}', 'deleteComment')->name('deleteComment'); //コメント削除
+});
+Route::controller(LikeController::class)->middleware(['auth'])->group(function(){
+    Route::post('/posts/{post}/like', 'like')->name('like'); //いいね保存
+    Route::delete('/posts/{post}/like', 'destroy')->name('destroy'); //いいね解除
 });
 
 //Route::get('/', function () {

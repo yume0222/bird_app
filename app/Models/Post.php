@@ -80,8 +80,9 @@ class Post extends Model
     {
         return $this::with(['category', 'user'])->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
-    // public function getPaginateByLimit(int $limit_count = 10)
-    // {
-    //     return $this::with(['category', 'user', 'post_picture'])->orderBy('updated_at', 'DESC')->paginate($limit_count);
-    // }
+    
+    public function isLikedBy($user) //いいね機能
+    {
+        return $this->likes()->where('user_id', $user->id)->exists();
+    }
 }
