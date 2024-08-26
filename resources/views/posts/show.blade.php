@@ -65,6 +65,20 @@
                     <p class="body__error" style="color:red">{{ $errors->first('comment') }}</p>
                     <button type="submit">コメントを投稿</button>
                 </form>
+                <p>いいね</p> <!--いいね-->
+                @if($post->isLikedBy(auth()->user()))
+                    <form action="/posts/{{ $post->id }}/like" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">いいね解除</button>
+                    </form>
+                @else
+                    <form action="/posts/{{ $post->id }}/like" method="POST">
+                        @csrf
+                        <button type="submit">いいね</button>
+                    </form>
+                @endif
+                <p>いいね数: {{ $post->likes->count() }}</p>
             
             @elseif ($category == 2) <!--野鳥-->
                 <p><a href="/profile/show/{{ $post->user->id }}">{{ $post->user->name }}</a></p>
@@ -115,6 +129,20 @@
                     <p class="body__error" style="color:red">{{ $errors->first('comment') }}</p>
                     <button type="submit">コメントを投稿</button>
                 </form>
+                <p>いいね</p> <!--いいね-->
+                @if($post->isLikedBy(auth()->user()))
+                    <form action="/posts/{{ $post->id }}/like" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">いいね解除</button>
+                    </form>
+                @else
+                    <form action="/posts/{{ $post->id }}/like" method="POST">
+                        @csrf
+                        <button type="submit">いいね</button>
+                    </form>
+                @endif
+                <p>いいね数: {{ $post->likes->count() }}</p>
             
             @elseif ($category == 3) <!--イベント-->
                 <p><a href="/profile/show/{{ $post->user->id }}">{{ $post->user->name }}</a></p>
@@ -167,6 +195,20 @@
                     <p class="body__error" style="color:red">{{ $errors->first('comment') }}</p>
                     <button type="submit">コメントを投稿</button>
                 </form>
+                <p>いいね</p> <!--いいね-->
+                @if($post->isLikedBy(auth()->user()))
+                    <form action="/posts/{{ $post->id }}/like" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">いいね解除</button>
+                    </form>
+                @else
+                    <form action="/posts/{{ $post->id }}/like" method="POST">
+                        @csrf
+                        <button type="submit">いいね</button>
+                    </form>
+                @endif
+                <p>いいね数: {{ $post->likes->count() }}</p>
             
             @elseif ($category == 4) <!--迷子-->
                 <p><a href="/profile/show/{{ $post->user->id }}">{{ $post->user->name }}</a></p>
@@ -223,6 +265,20 @@
                     <p class="body__error" style="color:red">{{ $errors->first('comment') }}</p>
                     <button type="submit">コメントを投稿</button>
                 </form>
+                <p>いいね</p> <!--いいね-->
+                @if($post->isLikedBy(auth()->user()))
+                    <form action="/posts/{{ $post->id }}/like" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">いいね解除</button>
+                    </form>
+                @else
+                    <form action="/posts/{{ $post->id }}/like" method="POST">
+                        @csrf
+                        <button type="submit">いいね</button>
+                    </form>
+                @endif
+                <p>いいね数: {{ $post->likes->count() }}</p>
             
             @elseif ($category == 5 || $category == 6) <!--雑談、相談-->
                 <p><a href="/profile/show/{{ $post->user->id }}">{{ $post->user->name }}</a></p>
@@ -267,6 +323,20 @@
                     <p class="body__error" style="color:red">{{ $errors->first('comment') }}</p>
                     <button type="submit">コメントを投稿</button>
                 </form>
+                <p>いいね</p> <!--いいね-->
+                @if($post->isLikedBy(auth()->user()))
+                    <form action="/posts/{{ $post->id }}/like" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">いいね解除</button>
+                    </form>
+                @else
+                    <form action="/posts/{{ $post->id }}/like" method="POST">
+                        @csrf
+                        <button type="submit">いいね</button>
+                    </form>
+                @endif
+                <p>いいね数: {{ $post->likes->count() }}</p>
             @endif
         </div>
         <div class="edit"><a href="/posts/{{ $post->id }}/edit">edit</a></div> <!--編集画面表示の遷移-->

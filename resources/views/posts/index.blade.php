@@ -41,6 +41,21 @@
                         <button type="button" onclick="deletePostPicture()">delete</button> 
                     </form>
                 @endif
+                <span class="comment-count">コメント数: {{ $post->comments->count() }}</span>
+                <p>いいね</p> <!--いいね-->
+                @if($post->isLikedBy(auth()->user()))
+                    <form action="/posts/{{ $post->id }}/like" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">いいね解除</button>
+                    </form>
+                @else
+                    <form action="/posts/{{ $post->id }}/like" method="POST">
+                        @csrf
+                        <button type="submit">いいね</button>
+                    </form>
+                @endif
+                <p>いいね数: {{ $post->likes->count() }}</p>
             
             @elseif ($post->category_id == 2) <!--野鳥-->
                 <p><a href="/profile/show/{{ $post->user->id }}">{{ $post->user->name }}</a></p>
@@ -73,6 +88,21 @@
                         <button type="button" onclick="deletePostPicture()">delete</button> 
                     </form>
                 @endif
+                <span class="comment-count">コメント数: {{ $post->comments->count() }}</span>
+                <p>いいね</p> <!--いいね-->
+                @if($post->isLikedBy(auth()->user()))
+                    <form action="/posts/{{ $post->id }}/like" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">いいね解除</button>
+                    </form>
+                @else
+                    <form action="/posts/{{ $post->id }}/like" method="POST">
+                        @csrf
+                        <button type="submit">いいね</button>
+                    </form>
+                @endif
+                <p>いいね数: {{ $post->likes->count() }}</p>
             
             @elseif ($post->category_id == 3) <!--イベント-->
                 <p><a href="/profile/show/{{ $post->user->id }}">{{ $post->user->name }}</a></p>
@@ -107,6 +137,21 @@
                         <button type="button" onclick="deletePostPicture()">delete</button> 
                     </form>
                 @endif
+                <span class="comment-count">コメント数: {{ $post->comments->count() }}</span>
+                <p>いいね</p> <!--いいね-->
+                @if($post->isLikedBy(auth()->user()))
+                    <form action="/posts/{{ $post->id }}/like" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">いいね解除</button>
+                    </form>
+                @else
+                    <form action="/posts/{{ $post->id }}/like" method="POST">
+                        @csrf
+                        <button type="submit">いいね</button>
+                    </form>
+                @endif
+                <p>いいね数: {{ $post->likes->count() }}</p>
             
             @elseif ($post->category_id == 4) <!--迷子-->
                 <p><a href="/profile/show/{{ $post->user->id }}">{{ $post->user->name }}</a></p>
@@ -145,6 +190,21 @@
                         <button type="button" onclick="deletePostPicture()">delete</button> 
                     </form>
                 @endif
+                <span class="comment-count">コメント数: {{ $post->comments->count() }}</span>
+                <p>いいね</p> <!--いいね-->
+                @if($post->isLikedBy(auth()->user()))
+                    <form action="/posts/{{ $post->id }}/like" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">いいね解除</button>
+                    </form>
+                @else
+                    <form action="/posts/{{ $post->id }}/like" method="POST">
+                        @csrf
+                        <button type="submit">いいね</button>
+                    </form>
+                @endif
+                <p>いいね数: {{ $post->likes->count() }}</p>
             
             @elseif ($post->category_id == 5 || $post->category_id == 6) <!--雑談、相談-->
                 <p><a href="/profile/show/{{ $post->user->id }}">{{ $post->user->name }}</a></p>
@@ -171,8 +231,23 @@
                         <button type="button" onclick="deletePostPicture()">delete</button> 
                     </form>
                 @endif
+                <span class="comment-count">コメント数: {{ $post->comments->count() }}</span>
+                <p>いいね</p> <!--いいね-->
+                @if($post->isLikedBy(auth()->user()))
+                    <form action="/posts/{{ $post->id }}/like" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">いいね解除</button>
+                    </form>
+                @else
+                    <form action="/posts/{{ $post->id }}/like" method="POST">
+                        @csrf
+                        <button type="submit">いいね</button>
+                    </form>
+                @endif
+                <p>いいね数: {{ $post->likes->count() }}</p>
+                
             @endif
-            
             <!--投稿削除-->
             <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
                 @csrf

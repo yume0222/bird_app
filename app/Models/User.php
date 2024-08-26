@@ -58,6 +58,14 @@ class User extends Authenticatable
     public function likes(){
         return $this->hasMany(Like::class);
     }
+    //多対多
+    // public function posts(){
+    //     return $this->belongsToMany(Post::class);
+    // }
+    // //多対多
+    // public function likes(){
+    //     return $this->hasMany(Like::class);
+    // }
 
     /**
      * The attributes that are mass assignable.
