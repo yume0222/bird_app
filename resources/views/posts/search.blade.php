@@ -15,13 +15,13 @@
                 <p>{{ $category->name }}</p>
                 <!--カテゴリーごとに表示を切り替え-->
                 @if ($category->id == 1) <!--愛鳥-->
-                    <p>誕生日</p> <!--ドロップダウン-->
+                    <p>誕生日</p><small>任意</small> <!--ドロップダウン-->
                     <input type="date" id="start" name="pet_bird_post[birthday]" value="{{ old('pet_bird_post.birthday') }}" min="2018-01-01" max="2024-12-31" />
-                    <p>キーワード検索</p>
+                    <p>キーワード検索</p><small>任意</small>
                     <input type="text" name="pet_bird_post[keyword]" placeholder="キーワード検索" value="{{request()->keyword}}" >
                 
                 @elseif ($category->id == 2) <!--野鳥-->
-                    <p>場所</p> <!--ドロップダウン-->
+                    <p>場所</p><small>任意</small> <!--ドロップダウン-->
                     <select name="wild_bird_post[prefecture_id]">
                         <option value="" selected>都道府県を選択してください</option>
                             @foreach ($prefectures as $prefecture)
@@ -30,13 +30,13 @@
                                 </option>
                             @endforeach
                     </select>
-                    <p>キーワード検索</p>
+                    <p>キーワード検索</p><small>任意</small>
                     <input type="text" name="wild_bird_post[keyword]" placeholder="キーワード検索" value="{{request()->keyword}}" >
                 
                 @elseif ($category->id == 3) <!--イベント-->
-                    <p>開催日</p> <!--ドロップダウン-->
+                    <p>開催日</p><small>任意</small> <!--ドロップダウン-->
                     <input type="date" id="start" name="event_post[start_date]" value="{{ old('event_post.start_date') }}" min="2018-01-01" max="2024-12-31" />
-                    <p>場所</p> <!--ドロップダウン-->
+                    <p>場所</p><small>任意</small> <!--ドロップダウン-->
                     <select name="event_post[prefecture_id]">
                         <option value="" selected>都道府県を選択してください</option>
                             @foreach ($prefectures as $prefecture)
@@ -45,13 +45,13 @@
                                 </option>
                             @endforeach
                     </select>
-                    <p>キーワード検索</p>
+                    <p>キーワード検索</p><small>任意</small>
                     <input type="text" name="event_post[keyword]" placeholder="キーワード検索" value="{{request()->keyword}}" >
                 
                 @elseif ($category->id == 4) <!--迷子-->
-                    <p>日付</p> <!--ドロップダウン-->
+                    <p>日付</p><small>任意</small> <!--ドロップダウン-->
                     <input type="date" id="start" name="lost_bird_post[discovery_date]" value="{{ old('lost_bird_post.discovery_date') }}" min="2018-01-01" max="2024-12-31" />
-                    <p>ステータス</p> <!--ドロップダウン-->
+                    <p>ステータス</p><small>任意</small> <!--ドロップダウン-->
                     {{--<select name="lost_bird_post[text]">-->
                     <!--    <option value="" selected>ステータスを選択してください</option>-->
                     <!--        @foreach ($lost_bird_posts as $lost_bird_post)-->
@@ -66,7 +66,7 @@
                       <option value="目撃">目撃</option>
                       <option value="保護">保護</option>
                     </select>
-                    <p>場所</p> <!--ドロップダウン-->
+                    <p>場所</p><small>任意</small> <!--ドロップダウン-->
                     <select name="lost_bird_post[prefecture_id]">
                         <option value="" selected>都道府県を選択してください</option>
                             @foreach ($prefectures as $prefecture)
@@ -75,7 +75,7 @@
                                 </option>
                             @endforeach
                     </select>
-                    <p>キーワード検索</p>
+                    <p>キーワード検索</p><small>任意</small>
                     <input type="text" name="lost_bird_post[keyword]" placeholder="キーワード検索" value="{{request()->keyword}}" >
 
                 @elseif ($category->id == 5 || $category->id == 6) <!--雑談、相談-->

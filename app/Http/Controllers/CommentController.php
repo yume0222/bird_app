@@ -8,6 +8,7 @@ use App\Models\Post; //Postモデルをインポート
 use App\Models\User; //Userモデルをインポート
 use App\Models\Category; //Categoryモデルをインポート
 use Illuminate\Support\Facades\Auth; //Auth
+use App\Models\Notification; //Notificationモデルをインポート
 
 class CommentController extends Controller
 {
@@ -22,6 +23,19 @@ class CommentController extends Controller
         $comment->comment = $validatedData['comment'];
         $comment->user_id = Auth::id();
         $comment->save();
+        
+        $user = auth()->user();
+        // 通知の作成
+        Notification::create([
+            'user_id' => $post->user_id,
+            'type' => 'comment',
+            'notifiable_id' => $comment->id,
+            'notifiable_type' => Comment::class,
+            'data' => [
+                'user_name' => $user->name,
+                //'user_id' => $user->id,
+            ]
+        ]);
 
         return redirect('/posts/' . $post->id);
     }
