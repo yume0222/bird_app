@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController; //UserControllerクラスをインポ�
 use App\Http\Controllers\BirdPictureController; ///BirdPicturControllerクラスをインポート
 use App\Http\Controllers\CommentController; ///CommentControllerクラスをインポート
 use App\Http\Controllers\LikeController; ///LikeControllerクラスをインポート
+use App\Http\Controllers\NotificationController; ///NotificationControllerクラスをインポート
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -49,6 +50,10 @@ Route::controller(LikeController::class)->middleware(['auth'])->group(function()
     Route::delete('/posts/{post}/like', 'destroy')->name('destroy'); //いいね解除
 });
 
+Route::controller(NotificationController::class)->middleware(['auth'])->group(function(){
+    Route::get('/notifications', 'notification')->name('notification'); //通知
+});
+
 //Route::get('/', function () {
     //return view('welcome');
 //});
@@ -56,7 +61,7 @@ Route::controller(LikeController::class)->middleware(['auth'])->group(function()
 Route::middleware('auth')->group(function () {
     Route::get('/profile/show', [ProfileController::class, 'show'])->name('profile.show'); //プロフィール表示
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit'); //プロフィール編集画面表示
-    Route::get('/profile/show/{user}', [ProfileController::class, 'showUser'])->name('profile.showUser'); //各ユーザのプロフィール表示
+    Route::get('/profile/show/{id}', [ProfileController::class, 'showUser'])->name('profile.showUser'); //各ユーザのプロフィール表示
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/profile/picture', [BirdPictureController::class, 'picture'])->name('profile.picture'); //画像登録画面表示
