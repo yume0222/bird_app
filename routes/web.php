@@ -9,6 +9,7 @@ use App\Http\Controllers\BirdPictureController; ///BirdPicturControllerクラス
 use App\Http\Controllers\CommentController; ///CommentControllerクラスをインポート
 use App\Http\Controllers\LikeController; ///LikeControllerクラスをインポート
 use App\Http\Controllers\NotificationController; ///NotificationControllerクラスをインポート
+use App\Http\Controllers\ImageUploadController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,6 +53,9 @@ Route::controller(LikeController::class)->middleware(['auth'])->group(function()
 
 Route::controller(NotificationController::class)->middleware(['auth'])->group(function(){
     Route::get('/notifications', 'notification')->name('notification'); //通知
+});
+Route::controller(ImageUploadController::class)->middleware(['auth'])->group(function(){
+    Route::post('/upload', 'upload')->name('image.upload'); //画像
 });
 
 //Route::get('/', function () {

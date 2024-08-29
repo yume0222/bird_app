@@ -5,6 +5,24 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Profile</title>
     </head>
+    <style>
+        cloudinary.createUploadWidget({
+          // ...
+          styles: {
+            palette: {
+              window: "#FFFFFF",
+              sourceBg: "#F4F4F5",
+              windowBorder: "#90A0B3",
+              tabIcon: "#0078FF",
+              // その他のカラー設定
+            },
+            fonts: {
+              default: null,
+              "'Poppins', sans-serif": "https://fonts.googleapis.com/css?family=Poppins"
+            }
+          }
+        }, (error, result) => { /* ... */ });
+    </style>
     <body>
         <form action="/profile/store" method="POST" enctype="multipart/form-data">
             @csrf

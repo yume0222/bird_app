@@ -16,7 +16,7 @@
                     <!--    {{ __('Dashboard') }}-->
                     <!--</x-nav-link>--}}
                     <!--ナビゲーション追加-->
-                    <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
+                    <x-nav-link :href="route('index')" :active="request()->routeIs('index') or request()->routeIs('select')">
                         {{ __('Post') }}
                     </x-nav-link>
                     <x-nav-link :href="route('categorySearch')" :active="request()->routeIs('categorySearch')">
