@@ -1,11 +1,4 @@
-<!DOCTYPE HTML> <!--投稿作成-->
-<html lang="ja">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Post</title>
-    </head>
-    <body>
+<x-app-layout>
         <h1>Post</h1>
         <form action="/posts/{{ $category->id }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -158,5 +151,4 @@
         <div class='footer'>
             <a href="/">戻る</a> <!--戻る-->
         </div>
-    </body>
-</html>
+</x-app-layout>

@@ -19,9 +19,22 @@
         
         <div>
             <x-input-label for="image_path" :value="__('プロフィール画像')" />
+            {{--<div>-->
+            <!--    @php($key = 'form.file')-->
+            <!--    @if ($form['file'])-->
+            <!--        <img class="h-[300px] object-fit mx-auto" src="{{ $form['file']->temporaryUrl() }}" alt="">  -->
+            <!--    @else-->
+            <!--        <input name="image_path" type="file" wire:model.defer="{{ $key }}" :value="old('image_path', $user->image_path)" autofocus autocomplete="image_path" />-->
+            <!--    @endif--}}
+            <!--</div>-->
             <div class="image">
-                <input name="image_path" type="file" :value="old('image_path', $user->image_path)" autofocus autocomplete="image_path" />
+                <input name="image_path" id="image" type="file" :value="old('image_path', $user->image_path)" autofocus autocomplete="image_path" accept="image/*" onchange="previewImage(event)"/>
+                <img id="image-preview" src="#" alt="プレビュー" style="display: none; width: 200px; height: 200px;"/>
             </div>
+            @if (session('success'))
+                <p>{{ session('success') }}</p
+                <img src="{{ asset('images/' . session('image')) }}" alt="アップロードされた画像" style="width: 200px; height: 200px;">
+            @endif
             <x-input-error class="mt-2" :messages="$errors->get('image_path')" />
         </div>
         <div>
@@ -47,7 +60,7 @@
         <div>
             <x-input-label for="gender" :value="__('年齢')" />
             <select name="age">
-                <option value="" disabled>年齢を選択してください</option>
+                <option value="" disabled selected>年齢を選択してください</option>
                     @foreach(range(1, 100) as $age)
                         <option value="{{ $age }}" {{ old('age', $user->age) == $age ? 'selected' : '' }} autofocus autocomplete="age" />
                             {{ $age }}
@@ -59,10 +72,16 @@
         <div>
             <x-input-label for="name" :value="__('都道府県')" />
             <select name="prefecture_id">
-                <option value="" disabled>都道府県を選択してください</option>
+                {{--<option value="" disabled selected>都道府県を選択してください</option>-->
+                <!--    @foreach ($prefectures as $prefecture)-->
+                <!--        <option value="{{ $prefecture->id }}" {{ old('prefecture' , $user->name) == $prefecture->id ? 'selected' : '' }} autofocus autocomplete="prefecture" />-->
+                <!--            {{ $prefecture->name }}-->
+                <!--        </option>-->
+                <!--    @endforeach--}}
+                <option value="" disabled {{ empty(old('prefecture_id', $user->prefecture_id)) ? 'selected' : '' }}>都道府県を選択してください</option>
                     @foreach ($prefectures as $prefecture)
-                        <option value="{{ $prefecture->id }}" {{ old('prefecture' , $user->name) == $prefecture->id ? 'selected' : '' }} autofocus autocomplete="prefecture" />
-                            {{ $prefecture->name }}
+                        <option value="{{ $prefecture->id }}" {{ (old('prefecture', $user->prefecture_id) == $prefecture->id) ? 'selected' : '' }}>
+                         {{ $prefecture->name }}
                         </option>
                     @endforeach
             </select>
@@ -130,4 +149,15 @@
             @endif
         </div>
     </form>
+    <script>
+        function previewImage(event) { 
+            var reader = new FileReader();
+            reader.onload = function(){ 
+                var output = document.getElementById('image-preview');
+                output.src = reader.result;
+                output.style.display = 'block';
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        } 
+    </script>
 </section>
