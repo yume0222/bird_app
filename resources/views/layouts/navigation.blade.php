@@ -12,9 +12,9 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
+                    {{--<x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">-->
+                    <!--    {{ __('Dashboard') }}-->
+                    <!--</x-nav-link>--}}
                     <!--ナビゲーション追加-->
                     <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
                         {{ __('Post') }}
@@ -24,6 +24,9 @@
                     </x-nav-link>
                     <x-nav-link :href="route('profile.show')" :active="request()->routeIs('profile.show')">
                         {{ __('Profile') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('notification')" :active="request()->routeIs('notification')">
+                        {{ __('Notification') }}
                     </x-nav-link>
                 </div>
             </div>

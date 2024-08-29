@@ -128,18 +128,15 @@
                     <textarea name="comment" placeholder="コメントしよう。">{{ old('comment') }}</textarea>
                     <p class="body__error" style="color:red">{{ $errors->first('comment') }}</p>
                     <button type="submit">コメントを投稿</button>
-                </form>
                 <p>いいね</p> <!--いいね-->
                 @if($post->isLikedBy(auth()->user()))
                     <form action="/posts/{{ $post->id }}/like" method="POST">
-                    <form action="/posts/{{ $post->id }}/like/{{ $user->id }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit">いいね解除</button>
                     </form>
                 @else
                     <form action="/posts/{{ $post->id }}/like" method="POST">
-                    <form action="/posts/{{ $post->id }}/like/{{ $user->id }}" method="POST">
                         @csrf
                         <button type="submit">いいね</button>
                     </form>
