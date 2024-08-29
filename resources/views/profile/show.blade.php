@@ -33,7 +33,11 @@
         <p>年齢</p>
         {{ $user->age }}
         <p>都道府県</p>
-        {{ $user->prefecture->name }}
+        @if(isset($user->prefecture_id)) 
+            {{ $user->prefecture->name }}
+        @else
+            <p>未選択</p>
+        @endif
         <p>好きな鳥</p>
         {{ $user->favorite_bird }}
         <p>愛鳥</p>

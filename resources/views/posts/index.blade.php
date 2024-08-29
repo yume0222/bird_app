@@ -1,4 +1,42 @@
 <x-app-layout>
+    {{--<link rel="stylesheet" href="{{ asset('/css/style.css') }}">--}}
+    <style>
+            .pagination {
+                /*カスタムスタイル */
+                display: flex;
+                justify-content: center;
+            }
+
+            .pagination li {
+                /*リストアイテムのスタイル  アクティブじゃない*/
+                margin: 0 5px;
+                width: 20px;
+                height: 20px;
+                border: 1px solid green;
+                 /*矢印のスタイル  アクティブじゃない*/
+                color: yellow;
+            }
+         
+            .pagination .active {
+                /*アクティブページのスタイル */
+                background-color: green;
+                color: #fff;
+                /*border-color: green;*/
+            }
+            
+            .pagination li a {
+                /*矢印の色 　アクティブじゃない*/
+                color: pink;
+                /*color: green;*/
+            }
+            
+            /*.pagination li.disabled span {*/
+            /*    color: #ccc;*/
+                 /*無効な矢印の色 */
+                 
+            /*    background-color: none;*/
+            /*}*/
+    </style>
         <h1>Post</h1>
         <div class="posts">
             @foreach ($posts as $post)
@@ -99,7 +137,9 @@
                 @else
                     <form action="/posts/{{ $post->id }}/like" method="POST">
                         @csrf
-                        <button type="submit">いいね</button>
+                        <button type="submit">
+                            <img src="{{ asset('/img/20230512_185647.jpg') }}" style="width: 20px;">
+                        </button>
                     </form>
                 @endif
                 <p>いいね数: {{ $post->likes->count() }}</p>
