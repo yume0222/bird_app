@@ -33,7 +33,7 @@ class CommentController extends Controller
             'notifiable_type' => Comment::class,
             'data' => [
                 'user_name' => $user->name,
-                //'user_id' => $user->id,
+                'user_id' => $user->id,
             ]
         ]);
 

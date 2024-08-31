@@ -1,11 +1,4 @@
-<!DOCTYPE HTML> <!--検索-->
-<html lang="ja">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Search</title>
-    </head>
-    <body>
+<x-app-layout><!--検索-->
         <h1>Post</h1>
         <form action="/search/category/{{ $category->id }}/result" method="POST">
             @csrf
@@ -88,5 +81,4 @@
         <div class='footer'>
             <a href="/">戻る</a> <!--戻る-->
         </div>
-    </body>
-</html>
+</x-app-layout>

@@ -12,11 +12,48 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        {{--@vite(['resources/css/app.css', 'resources/js/app.js'])--}}
+  <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .app_container {
+            display: flex;
+        }
+        .footer {
+           
+        }
+        .body {
+            width: calc(100% - 64px);
+            max-width: 675px;
+            height: calc(100vh - 64px);
+            margin: 32px auto;
+            border: 1px solid #000000;
+            overflow: scroll;
+            scrollbar-width: none;
+        }
+        .button {
+         
+        }
+        </style>
+        
+   
+        
+        </style>
     </head>
-    <body class="font-sans antialiased">
+   <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+
+            <div class="app_container">
+                <div class="footer">@include('layouts.navigation')</div>
+                     <div class="body">
+                          {{ $slot }}
+                     </div>
+                <div class="button"><x-post-button /></div>
+            </div>
+            <!-- Page Content -->
 
             <!-- Page Heading -->
             @if (isset($header))
@@ -26,11 +63,7 @@
                     </div>
                 </header>
             @endif
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+            
+            <!--<x-post-button />-->
         </div>
-    </body>
 </html>

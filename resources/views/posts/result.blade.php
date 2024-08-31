@@ -1,11 +1,4 @@
-<!DOCTYPE HTML> <!--検索結果-->
-<html lang="ja">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Post</title>
-    </head>
-    <body>
+<x-app-layout><!--検索結果-->
         <h1>Post</h1>
         <div class="posts">
              @if(count($posts) == 0)
@@ -127,5 +120,4 @@
             
             @endif
         </div>
-    </body>
-</html>
+</x-app-layout>

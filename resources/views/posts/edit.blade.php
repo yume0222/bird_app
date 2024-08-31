@@ -1,11 +1,4 @@
-<!DOCTYPE HTML> <!--編集画面表示-->
-<html lang="ja">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Post</title>
-    </head>
-    <body>
+<x-app-layout><!--編集画面表示-->
         <h1>Post</h1>
         <form action="/posts/{{ $post->id }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -170,5 +163,17 @@
         <div class='footer'>
             <a href="/">戻る</a> <!--戻る-->
         </div>
-    </body>
-</html>
+        
+        <script>
+            function previewImage(event) { 
+                console.log("image");
+                var reader = new FileReader();
+                reader.onload = function(){ 
+                    var output = document.getElementById('image-preview');
+                    output.src = reader.result;
+                    output.style.display = 'block';
+                };
+                reader.readAsDataURL(event.target.files[0]);
+            } 
+        </script>
+</x-app-layout>
