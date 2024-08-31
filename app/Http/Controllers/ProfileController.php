@@ -63,6 +63,7 @@ class ProfileController extends Controller
     {
         return view('profile.show_user')->with(['user' => $user]);
     }
+    
 
     /**
      * Delete the user's account.

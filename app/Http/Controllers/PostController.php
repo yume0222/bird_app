@@ -82,12 +82,13 @@ class PostController extends Controller
         ]);
         $input['post']['user_id'] = Auth::id();
         $input['post']['category_id'] = $categoryId;
-        $new_post = Post::create($input['post']);
         
         if($request->file('image')){ //画像ファイルが送られた時だけ処理が実行
             $image_url = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
             $input['post']['post_picture_path'] = $image_url;
         }
+        
+        $new_post = Post::create($input['post']);
         
         switch ($categoryId) {
             case 1:

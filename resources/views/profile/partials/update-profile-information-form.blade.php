@@ -1,13 +1,13 @@
 <section>
-    <header>
+    {{--<header>-->
         <h2 class="text-lg font-medium text-gray-900">
             {{ __('Profile Information') }}
         </h2>
 
-        <p class="mt-1 text-sm text-gray-600">
-            {{ __("Update your account's profile information and email address.") }}
-        </p>
-    </header>
+    <!--    <p class="mt-1 text-sm text-gray-600">-->
+    <!--        {{ __("Update your account's profile information and email address.") }}-->
+    <!--    </p>-->
+    <!--</header>--}}
 
     <form id="send-verification" method="post" action="{{ route('verification.send') }}">
         @csrf
@@ -19,20 +19,12 @@
         
         <div>
             <x-input-label for="image_path" :value="__('プロフィール画像')" />
-            {{--<div>-->
-            <!--    @php($key = 'form.file')-->
-            <!--    @if ($form['file'])-->
-            <!--        <img class="h-[300px] object-fit mx-auto" src="{{ $form['file']->temporaryUrl() }}" alt="">  -->
-            <!--    @else-->
-            <!--        <input name="image_path" type="file" wire:model.defer="{{ $key }}" :value="old('image_path', $user->image_path)" autofocus autocomplete="image_path" />-->
-            <!--    @endif--}}
-            <!--</div>-->
             <div class="image">
                 <input name="image_path" id="image" type="file" :value="old('image_path', $user->image_path)" autofocus autocomplete="image_path" accept="image/*" onchange="previewImage(event)"/>
                 <img id="image-preview" src="#" alt="プレビュー" style="display: none; width: 200px; height: 200px;"/>
             </div>
             @if (session('success'))
-                <p>{{ session('success') }}</p
+                <p>{{ session('success') }}</p>
                 <img src="{{ asset('images/' . session('image')) }}" alt="アップロードされた画像" style="width: 200px; height: 200px;">
             @endif
             <x-input-error class="mt-2" :messages="$errors->get('image_path')" />

@@ -1,12 +1,4 @@
-<!DOCTYPE html> <!--投稿詳細-->
-<html lang="ja">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Post</title>
-        <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
-    </head>
-    <body>
+<x-app-layout><!--投稿詳細-->
         <h1>Post</h1>
         <div class="posts">
             <!--カテゴリー名を表示-->
@@ -344,7 +336,8 @@
             <a href="/">戻る</a> <!--戻る-->
         </div>
         
-        <script> //コメント削除
+        <script> 
+            //コメント削除
             function deleteComment(id) {
                 'use strict'
 
@@ -352,6 +345,28 @@
                     document.getElementById(`form_${id}`).submit();
                 }
             }
+            
+            //投稿削除
+            function deletePost(id) {
+                'use strict'
+
+                if (confirm('削除しますか？')) {
+                    document.getElementById(`form_${id}`).submit();
+                }
+            }
+            //画像削除
+            function deletePostPicture(id) {
+                'use strict'
+
+                if (confirm('削除しますか？')) {
+                    document.getElementById('post_picture_path').submit();
+                }
+            }
+            //ポップアップ
+            function togglePopup() {
+                var popup = document.getElementById('popup');
+                popup.style.display = popup.style.display === 'none' ? 'flex' : 'none';
+            }
         </script>
-    </body>
-</html>
+        </script>
+</x-app-layout>

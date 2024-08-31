@@ -14,5 +14,11 @@ class NotificationController extends Controller
        $notifications = auth()->user()->notifications()->orderBy('created_at', 'desc')->get();
        return view('posts.notification', compact('notifications'));
    }
+   
+   public function notificationUser(Notification $notification)
+   {
+      return view('posts.notification_show_user')->with(['notification' => $notification]);
+   }
+
 
 }

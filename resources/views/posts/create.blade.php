@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout><!--投稿作成-->
         <h1>Post</h1>
         <form action="/posts/{{ $category->id }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -33,8 +33,13 @@
                     <p class="body__error" style="color:red">{{ $errors->first('post.body') }}</p>
                     <p>画像</p><small>任意</small>
                     <div class="image">
-                        <input type="file" name="image">
+                        <input name="image" id="image" type="file" onchange="previewImage(event)"/>
+                        <img id="image-preview" src="#" alt="プレビュー" style="display: none; width: 200px; height: 200px;"/>
                     </div>
+                    @if (session('success'))
+                        <p>{{ session('success') }}</p>
+                        <img src="{{ asset('images/' . session('image')) }}" alt="アップロードされた画像" style="width: 200px; height: 200px;">
+                    @endif
                 
                 @elseif ($category->id == 2) <!--野鳥-->
                     <p>種類</p><small>必須</small>
@@ -58,8 +63,13 @@
                     <p class="body__error" style="color:red">{{ $errors->first('post.body') }}</p>
                     <p>画像</p><small>任意</small>
                     <div class="image">
-                        <input type="file" name="image">
+                        <input name="image" id="image" type="file" onchange="previewImage(event)"/>
+                        <img id="image-preview" src="#" alt="プレビュー" style="display: none; width: 200px; height: 200px;"/>
                     </div>
+                    @if (session('success'))
+                        <p>{{ session('success') }}</p>
+                        <img src="{{ asset('images/' . session('image')) }}" alt="アップロードされた画像" style="width: 200px; height: 200px;">
+                    @endif
                 
                 @elseif ($category->id == 3) <!--イベント-->
                     <p>イベント名</p><small>必須</small>
@@ -86,8 +96,13 @@
                     <p class="body__error" style="color:red">{{ $errors->first('post.body') }}</p>
                     <p>画像</p><small>任意</small>
                     <div class="image">
-                        <input type="file" name="image">
+                        <input name="image" id="image" type="file" onchange="previewImage(event)"/>
+                        <img id="image-preview" src="#" alt="プレビュー" style="display: none; width: 200px; height: 200px;"/>
                     </div>
+                    @if (session('success'))
+                        <p>{{ session('success') }}</p>
+                        <img src="{{ asset('images/' . session('image')) }}" alt="アップロードされた画像" style="width: 200px; height: 200px;">
+                    @endif
                 
                 @elseif ($category->id == 4) <!--迷子-->
                     <p>日付</p><small>必須</small> <!--ドロップダウン-->
@@ -151,4 +166,17 @@
         <div class='footer'>
             <a href="/">戻る</a> <!--戻る-->
         </div>
+        
+        <script>
+            function previewImage(event) { 
+                console.log("image");
+                var reader = new FileReader();
+                reader.onload = function(){ 
+                    var output = document.getElementById('image-preview');
+                    output.src = reader.result;
+                    output.style.display = 'block';
+                };
+                reader.readAsDataURL(event.target.files[0]);
+            } 
+        </script>
 </x-app-layout>

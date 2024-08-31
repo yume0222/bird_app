@@ -1,45 +1,69 @@
-<x-app-layout>
+<x-app-layout><!--投稿一覧-->
     {{--<link rel="stylesheet" href="{{ asset('/css/style.css') }}">--}}
     <style>
-            .pagination {
-                /*カスタムスタイル */
-                display: flex;
-                justify-content: center;
-            }
+        .pagination {
+            /*カスタムスタイル */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .pagination li {
+            /*アクティブじゃない*/
+            border-radius: 5px;
+            margin: 0 5px;
+            width: 30px;
+            height: 35px;
+            border: 1px solid #9DC3C0;
+            color: #9DC3C0;
+            display: flex; /* Use flexbox for alignment */
+            align-items: center; /* Vertically center */
+            justify-content: center; /* Horizontally center */
+        }
+        .pagination .active {
+            /*アクティブページ */
+            background-color: #9DC3C0;
+            color: #fff;
+        }
+        /*ポップアップ*/
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .popup-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+        }
+         h1 {
+             background: #9DC3C0;
+             height: 64px;
+             
+             position: sticky;
+              top: 0;
+              left: 0;
+              width: 100%;
+         }
+         .posts {
+             width: calc(100% - 32px);
+             border: 1px solid #000;
+             margin: 16px auto;
+              
+         }
 
-            .pagination li {
-                /*リストアイテムのスタイル  アクティブじゃない*/
-                margin: 0 5px;
-                width: 20px;
-                height: 20px;
-                border: 1px solid green;
-                 /*矢印のスタイル  アクティブじゃない*/
-                color: yellow;
-            }
          
-            .pagination .active {
-                /*アクティブページのスタイル */
-                background-color: green;
-                color: #fff;
-                /*border-color: green;*/
-            }
-            
-            .pagination li a {
-                /*矢印の色 　アクティブじゃない*/
-                color: pink;
-                /*color: green;*/
-            }
-            
-            /*.pagination li.disabled span {*/
-            /*    color: #ccc;*/
-                 /*無効な矢印の色 */
-                 
-            /*    background-color: none;*/
-            /*}*/
+         
     </style>
+        <div class="button_container"><!--sp-->
         <h1>Post</h1>
-        <div class="posts">
             @foreach ($posts as $post)
+            <div class="posts"><!--各枠-->
                 <!--カテゴリー名を表示-->
                 <p>カテゴリー</p>
                 <p>{{ $post->category->name }}</p>
@@ -287,22 +311,34 @@
                 @endif
                 <p>いいね数: {{ $post->likes->count() }}</p>
                 
+                <div>
+                    <img src="{{ asset('/img/20230512_185647.jpg') }}" style="width: 20px;" onclick="togglePopup()">
+                </div>
+                <div id="popup" class="popup" style="display: none;">
+                    <div class="popup-content">
+                        <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button" onclick="deletePost({{ $post->id }})">delete</button> 
+                        </form>
+                        <div class="edit"><a href="/posts/{{ $post->id }}/edit">edit</a></div>
+                        <button onclick="togglePopup()">Close</button>
+                    </div>
+                </div>
             @endif
-            <!--投稿削除-->
-            <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
-                @csrf
-                @method('DELETE')
-                <button type="button" onclick="deletePost({{ $post->id }})">delete</button> 
-            </form>
+            </div><!--各枠-->
+            <!--削除-->
             @endforeach
-        </div>
-        <a href='/posts/category'>create</a> <!--投稿作成に遷移-->
+        <!--<a href='/posts/category'>create</a> <!--投稿作成に遷移-->
         <div class='paginate'>
             {{ $posts->links() }} <!--ペジネーション-->
         </div>
         
-        <script> //削除
-            //投稿
+        <div class="button"><x-post-button /></div>
+        </div><!--sp-->
+        
+        <script>
+            //投稿削除
             function deletePost(id) {
                 'use strict'
 
@@ -310,13 +346,18 @@
                     document.getElementById(`form_${id}`).submit();
                 }
             }
-            //画像
+            //画像削除
             function deletePostPicture(id) {
                 'use strict'
 
                 if (confirm('削除しますか？')) {
                     document.getElementById('post_picture_path').submit();
                 }
+            }
+            //ポップアップ
+            function togglePopup() {
+                var popup = document.getElementById('popup');
+                popup.style.display = popup.style.display === 'none' ? 'flex' : 'none';
             }
         </script>
 </x-app-layout>

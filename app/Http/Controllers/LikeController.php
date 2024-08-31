@@ -24,7 +24,7 @@ class LikeController extends Controller
             'notifiable_type' => Post::class,
             'data' => [
                 'user_name' => $user->name,
-                //'user_id' => $user->id,
+                'user_id' => $user->id,
             ]
         ]);
         

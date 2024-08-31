@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout><!--投稿作成にカテゴリー名を表示-->
         <h1>Post</h1>
             <div class="body">
                 <p>カテゴリー</p>
