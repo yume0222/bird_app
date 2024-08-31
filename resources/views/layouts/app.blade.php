@@ -23,10 +23,7 @@
             display: flex;
         }
         .footer {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+           
         }
         .body {
             width: calc(100% - 64px);
@@ -38,10 +35,7 @@
             scrollbar-width: none;
         }
         .button {
-          position: fixed;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
+         
         }
         </style>
         

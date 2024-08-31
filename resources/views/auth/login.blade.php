@@ -1,12 +1,13 @@
 <x-guest-layout>
     <style>
         .login {
-            border: 1px solid red;
+            border: 1px solid blue;
             background: red;
             
         }
-        input:focus {
+        input.login:focus {
           border: 1px solid red;
+          outline: none;
         }
     </style>
     <!-- Session Status -->
@@ -15,12 +16,12 @@
     <form method="POST" action="{{ route('login') }}">
         @csrf
         
-        <p>ログイン</p>
+        <p>ログインa</p>
 
         <!-- Email Address -->
         <div>
 
-            <x-text-input id="email" class="login" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+            <input id="email" class="login" type="email" name="email" required  />
             <x-input-error :messages="$errors->get('email')" />
         </div>
 
