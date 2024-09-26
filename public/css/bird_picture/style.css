@@ -1,0 +1,68 @@
+/*picture.blade.php*/
+@charset 'utf-8';
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: 1.8;
+    text-decoration: none;
+    font-family: "源ノ角ゴシック", sans-serif;
+}
+.header {
+    background: #9DC3C0;
+    height: 56px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    dislay: flex;
+}
+h1 {
+    display: block;
+    font-size: 18px;
+    color: #ffffff;
+    width: 100%;
+    text-align: center;
+    line-height: 56px;
+    
+    background: initial;
+    height: initial;
+    position: initial;
+    width: initial;
+}
+.back {
+    width: auto;
+    height: 14px;
+    position: absolute;
+    top: 21px;
+    left: 24px;
+}
+.title {
+    font-size: 14px;
+    color: #46405B;
+}
+.container {
+    padding: 16px 0;
+    margin: 0 auto;
+    width: calc(100% - 32px);
+}
+.upload {
+    width: 500px;
+}
+.store_box {
+    margin: 24px auto 0;
+    text-align: center;
+}
+.store {
+    border: none;
+    outline: none;
+    appearance: none;
+    background: none;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 14px;
+    background-color: #9DC3C0;
+    padding: 8px 16px;
+    border-radius: 2px;
+}

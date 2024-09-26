@@ -1,5 +1,5 @@
 <a href='/posts/category' class="round-button" {{ $attributes->merge(['class' => 'round-button']) }}>
-    <img src="{{ asset('/img/20230512_185647.jpg') }}" style="width: 20px;">
+    <img src="{{ asset('/img/plus.png') }}">
 </a>
 
 <style>
@@ -9,14 +9,24 @@
     width: 50px;
     height: 50px;
     cursor: pointer;
-    display: flex; /* Center the image */
-    align-items: center; /* Center the image vertically */
-    justify-content: center; /* Center the image horizontally */
-    text-decoration: none; /* Remove underline from link */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0px 3px 6px rgba(157, 195, 192, .5);
 }
-
 .round-button img {
-    width: 16px; /* Adjust the size of the image */
+    width: 16px;
     height: 16px;
 }
+/*@media screen and (min-width: 990px) {*/
+/*    .round-button {*/
+/*        width: 64px;*/
+/*        height: 64px;*/
+/*    }*/
+/*    .round-button img {*/
+/*        width: 24px;*/
+/*        height: 24px;*/
+/*    }*/
+/*}*/
 </style>

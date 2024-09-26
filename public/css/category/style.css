@@ -1,0 +1,59 @@
+/*select_category.blade.php*/
+/*select_category_serach.blade.php*/
+@charset 'utf-8';
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: 1.8;
+    text-decoration: none;
+    font-family: "源ノ角ゴシック", sans-serif;
+}
+h1 {
+    background: #9DC3C0;
+    height: 56px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    font-size: 18px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 56px;
+}
+p {
+    font-size: 16px;
+    color: rgba(70, 64, 91, .75);
+    margin: 32px auto 0;
+    text-align: center;
+}
+.body {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    width: calc(100% - 32px);
+    margin: 24px auto 0;
+    flex-wrap: wrap;
+    max-width: 400px;
+}
+.container {
+    border: 2px solid rgba(157, 195, 192, .75);
+    width: 100px;
+    padding: 8px 0;
+    text-align: center;
+    border-radius: 10px;
+}
+li {
+    list-style-type: none;
+}
+small {
+    color: #a9a9a9;
+    font-size: 8px;
+    display: block;
+    margin-top: -4px; 
+}
+.visited,
+.visited:visited {
+    color: rgba(70, 64, 91, .75);
+    font-size: 16px;
+}

@@ -1,0 +1,115 @@
+/*.blade.php*/
+@charset 'utf-8';
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: 1.8;
+    text-decoration: none;
+    font-family: "源ノ角ゴシック", sans-serif;
+}
+.header {
+    background: #9DC3C0;
+    height: 56px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    dislay: flex;
+}
+h1 {
+    display: block;
+    font-size: 18px;
+    color: #ffffff;
+    width: 100%;
+    text-align: center;
+    line-height: 56px;
+    
+    background: initial;
+    height: initial;
+    position: initial;
+    width: initial;
+}
+.back {
+    width: auto;
+    height: 14px;
+    position: absolute;
+    top: 21px;
+    left: 24px;
+}
+.mt_0 {
+    margin-top: 0;
+}
+.mt_8 {
+    margin-top: 8px;
+}
+.img_flex {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    overflow: scroll;
+    scrollbar-width: none;
+    margin-top: 16px;
+}
+.bird_picture {
+    width: 150px;
+    height: auto;
+}
+.visited,
+.visited:visited {
+    font-size: 16px;
+    color: #46405B;
+}
+.view_box {
+    display: flex;
+    margin-top: 8px;
+}
+.view_box a {
+  display: flex;
+  align-items: center;
+}
+.view {
+    font-size: 14px;
+    color: #46405B;
+}
+.right {
+    width: 14px;
+    height: 14px;
+    margin-bottom: -2px;
+}
+.attention {
+    font-size: 12px;
+    color: rgba(70, 64, 91, .75);
+}
+.button_box {
+    margin: 24px auto 0;
+    text-align: center;
+}
+button {
+    border: none;
+    outline: none;
+    appearance: none;
+    background: none;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 14px;
+    background-color: #9DC3C0;
+    padding: 8px 16px;
+    border-radius: 2px;
+}
+
+h2 {
+    font-size: 16px;
+    color: #46405B;
+    margin: 32px auto 0;
+}
+.account_delete {
+    background: #F44336;
+}
+.explanation {
+    font-size: 14px;
+}
+.mt_16 {
+    margin-top: 16px;
+}

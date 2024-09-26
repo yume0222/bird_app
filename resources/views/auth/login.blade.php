@@ -1,63 +1,54 @@
 <x-guest-layout>
-    <style>
-        .login {
-            border: 1px solid blue;
-            background: red;
-            
-        }
-        input.login:focus {
-          border: 1px solid red;
-          outline: none;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('/css/auth/style.css') }}">
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
     <form method="POST" action="{{ route('login') }}">
         @csrf
         
-        <p>ログインa</p>
+        <p class="title">ログイン</p>
 
         <!-- Email Address -->
         <div>
-
-            <input id="email" class="login" type="email" name="email" required  />
+            {{--<x-input-label for="email" :value="__('Email')" />--}}
+            <input id="email" class="login" type="email" name="email" placeholder="メールアドレス" required  />
             <x-input-error :messages="$errors->get('email')" />
         </div>
 
         <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
+        <div>
+            {{--<x-input-label for="password" :value="__('Password')" />--}}
+            <x-text-input id="password" class="login mt-16" placeholder="パスワード"
                             type="password"
                             name="password"
                             required autocomplete="current-password" />
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            <x-input-error :messages="$errors->get('password')" />
         </div>
 
         <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-            </label>
-        </div>
+        {{--<div class="block mt-4">-->
+        <!--    <label for="remember_me" class="inline-flex items-center">-->
+        <!--        <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">-->
+        <!--        <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>-->
+        <!--    </label>-->
+        <!--</div>--}}
 
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('パスワードをお忘れの方はこちら') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ms-3">
+        <div>
+            <x-primary-button >
                 {{ __('ログイン') }}
             </x-primary-button>
+            
+            @if (Route::has('password.request'))
+                <div class="forget">
+                    <a  href="{{ route('password.request') }}" class="visited forget_link">
+                        {{ __('パスワードをお忘れの方はこちら') }}
+                    </a>
+                </div>
+            @endif
         </div>
         
         <!-- register -->
-        <a href='/register'>register</a>
+        <div class="register"><a href='/register' class="visited register_link">新規登録</a></div>
     </form>
 </x-guest-layout>

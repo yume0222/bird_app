@@ -13,27 +13,16 @@
 
         <!-- Scripts -->
         @vite(['resources/js/app.js'])
-        <style>
-            .container {
-                display: flex;
-                justify-content: center;
-            }
-            .border {
-                box-shadow: 0 3px 6px #9DC3C0;
-            }
-        </style>
+        <link rel="stylesheet" href="{{ asset('/css/auth/style.css') }}">
     </head>
     <body>
+        <!--<div>-->
+        <!--    <a href="/">-->
+        <!--        <x-application-logo class="w-20 h-20 fill-current text-gray-500" />-->
+        <!--    </a>-->
+        <!--</div>-->
         <div class="container">
-            <!--<div>-->
-            <!--    <a href="/">-->
-            <!--        <x-application-logo class="w-20 h-20 fill-current text-gray-500" />-->
-            <!--    </a>-->
-            <!--</div>-->
-
-            <div class="border">
-                {{ $slot }}
-            </div>
+            {{ $slot }}
         </div>
     </body>
 </html>

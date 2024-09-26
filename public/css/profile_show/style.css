@@ -1,0 +1,161 @@
+@charset 'utf-8';
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: 1.8;
+    text-decoration: none;
+    font-family: "源ノ角ゴシック", sans-serif;
+}
+.mb {
+    margin-bottom: 56px;
+}
+h1 {
+    background: #9DC3C0;
+    height: 56px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    font-size: 18px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 56px;
+}
+p {
+    font-size: 14px;
+    color: #46405B;
+}
+.container {
+    width: calc(100% - 32px);
+    margin: 16px auto;
+}
+.flex_box {
+    display: flex;
+    justify-content: space-between;
+}
+.delete_box {
+    display: flex;
+    align-items: flex-start;
+}
+.option_box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    /*height: 84px;*/
+    height: 80px;
+}
+.visited:visited {
+    color: #46405B;
+}
+.logout {
+    width: 24px;
+    height: auto;
+    opacity: .5;
+}
+.edit,
+.edit:visited {
+    padding: 8px 16px;
+    border: 1px solid #46405B;
+    border-radius: 20px;
+    color: #46405B;
+    font-size: 12px;
+}
+.pic {
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+}
+.img_box {
+    width: 84px;
+    height: 84px;
+    border: 1.68px solid #9DC3C0;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icon {
+    width: 58.8px;
+    height: 58.8px;
+}
+.name {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 16px;
+}
+.self_introduction {
+    font-size: 16px;
+    margin-top: 8px;
+}
+.profile_box {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 16px;
+}
+.mt_24 {
+    margin-top: 24px;
+}
+.title {
+    font-size: 14px;
+    color: #ffffff;
+    padding: 6px 12px;
+    background-color: rgba(157, 195, 192, .75);
+    border-radius: 2px;
+}
+.img_flex {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    overflow: scroll;
+    scrollbar-width: none;
+    margin-top: 16px;
+}
+.bird_picture {
+    width: 150px;
+    height: auto;
+}
+.circle-container {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: -24px;
+}
+.circle-box {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: rgba(70, 64, 91, .35);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.delete {
+    width: 16px;
+    height: auto;
+}
+.mt {
+    margin-top: -24px;
+}
+.mt_16 {
+    margin-top: 16px;
+    display: inline-block;
+}
+button{
+  border: none;
+  outline: none;
+  appearance: none;
+  background: none;
+  cursor: pointer;
+}
+@media screen and (min-width: 768px) {
+    .mb {
+        margin-bottom: 0;
+    }
+}

@@ -1,26 +1,4 @@
-<style>
-    .test {
-        box-sizing: border-box;
-        background: #9DC3C0;
-        /*padding: 12px 24px;*/
-        width: 97px;
-        height: 41px;
-        display: block;
-        /*text-align: center;*/
-        border-radius: 24px;
-        color: white;
-        display: flex; /* displayをflexに変更 */
-        justify-content: center; /* 水平方向の中央揃え */
-        align-items: center; /* 垂直方向の中央揃え */
-    }
-    .nav_container {
-        display: flex;
-        justify-content: center;
-        margin: 25px auto;
-        flex-direction: row;
-        /*flex-direction: column;*/
-    }
-</style>
+<link rel="stylesheet" href="{{ asset('/css/app/style.css') }}">
 
 <nav x-data="{ open: false }">
     <!-- Primary Navigation Menu -->
@@ -40,16 +18,16 @@
                     <!--    {{ __('Dashboard') }}-->
                     <!--</x-nav-link>--}}
                     <!--ナビゲーション追加-->
-                    <x-nav-link :href="route('index')" :active="request()->routeIs('index') or request()->routeIs('select') or request()->routeIs('show') or request()->routeIs('create') or request()->routeIs('edit')" class="test">
+                    <x-nav-link :href="route('index')" :active="request()->routeIs('index') or request()->routeIs('select') or request()->routeIs('show') or request()->routeIs('create') or request()->routeIs('edit') or request()->routeIs('comment.edit')" class="nav">
                         {{ __('Post') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('search.select_category')" :active="request()->routeIs('search.select_category') or request()->routeIs('search') or request()->routeIs('search.result')" class="test">
+                    <x-nav-link :href="route('search.select_category')" :active="request()->routeIs('search.select_category') or request()->routeIs('search') or request()->routeIs('search.result')" class="nav">
                         {{ __('Search') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('profile.show')" :active="request()->routeIs('profile.show') or request()->routeIs('profile.edit') or request()->routeIs('profile.show_user') or request()->routeIs('profile.picture')" class="test">
+                    <x-nav-link :href="route('profile.show')" :active="request()->routeIs('profile.show') or request()->routeIs('profile.edit') or request()->routeIs('profile.show_user') or request()->routeIs('profile.picture')" class="nav">
                         {{ __('Profile') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('notification')" :active="request()->routeIs('notification')" class="test">
+                    <x-nav-link :href="route('notification')" :active="request()->routeIs('notification')" class="nav">
                         {{ __('Notion') }}
                     </x-nav-link>
                 </div>
