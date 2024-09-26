@@ -1,0 +1,119 @@
+/*show.blade.php*/
+@charset 'utf-8';
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: 1.8;
+    text-decoration: none;
+    font-family: "源ノ角ゴシック", sans-serif;
+}
+.mb {
+    margin-bottom: 72px;
+}
+.header {
+    background: #9DC3C0;
+    height: 56px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    dislay: flex;
+}
+h1 {
+    display: block;
+    font-size: 18px;
+    color: #ffffff;
+    width: 100%;
+    text-align: center;
+    line-height: 56px;
+    
+    background: initial;
+    height: initial;
+    position: initial;
+    width: initial;
+}
+.back {
+    width: auto;
+    height: 14px;
+    position: absolute;
+    top: 21px;
+    left: 24px;
+}
+.posts {
+    margin-bottom: 16px;
+}
+.show_name {
+    margin-left: 16px;
+}
+.comment_container {
+    margin-top: 16px;
+}
+
+.post_pic_box {
+    margin-left: 0;
+}
+.mt_8 {
+    margin-top: 8px;
+}
+.ml_66 {
+     margin-left: 0;
+}
+/*.comment_submit {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    margin: 16px auto 24px;*/
+/*}*/
+/*input {*/
+/*    border: none;*/
+/*	border-radius: 25px;*/
+/*	outline: none;*/
+/*	appearance: none;*/
+/*	border: 1px solid #9DC3C0;*/
+/*	padding: 8px 16px;*/
+/*}*/
+/*.send {*/
+/*    width: 24px;*/
+/*    height: auto;*/
+/*}*/
+.comment_submit {
+    display: flex;
+    align-items: center;
+    margin: 16px auto 24px;
+}
+.comment_submit form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.comment_submit input {
+    flex-grow: 1;
+    margin-right: 10px;
+    
+    border: none;
+	border-radius: 25px;
+	outline: none;
+	appearance: none;
+	border: 1px solid #9DC3C0;
+	padding: 8px 16px;
+}
+.comment_submit button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.comment_submit .send {
+    width: 24px;
+    height: auto;
+    margin-bottom: -5px;
+}
+@media screen and (min-width: 768px) {
+    .mb {
+        margin-bottom: 16px;
+    }
+}

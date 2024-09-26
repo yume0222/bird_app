@@ -1,0 +1,245 @@
+/*index.blade.php*/
+@charset 'utf-8';
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: 1.8;
+    text-decoration: none;
+    font-family: "源ノ角ゴシック", sans-serif;
+}
+/*index.blade.php・Posts*/
+/*.button_container {*/
+/*    position: relative;*/
+/*}*/
+/*.button {*/
+/*    position: absolute;*/
+/*    bottom: 80px;*/
+/*    right: 16px;*/
+/*}*/
+.mb {
+    margin-bottom: 72px;
+}
+h1 {
+    background: #9DC3C0;
+    height: 56px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    font-size: 18px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 56px;
+}
+p {
+    color: #46405B;
+}
+.posts {
+    width: calc(100% - 32px);
+    margin: 16px auto 0;
+    box-shadow: 0px 3px 6px rgba(157, 195, 192, .25);
+    padding: 16px;
+}
+/*ペジネーション*/
+.pagination {
+    /*カスタムスタイル */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pagination li {
+    /*アクティブじゃないページ*/
+    border-radius: 5px;
+    margin: 0 5px;
+    width: 30px;
+    height: 35px;
+    border: 1px solid #9DC3C0;
+    color: #9DC3C0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.pagination .active {
+    /*アクティブページ */
+    background-color: #9DC3C0;
+    color: #fff;
+}
+/*削除、編集のポップアップ*/
+.more {
+    width: 3px;
+}
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.container {
+    display: flex;
+    gap: 16px;
+}
+.pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.img_box {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #9DC3C0;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icon {
+    width: 35px;
+    height: 35px;
+}
+.data {
+    display: flex;
+    align-items: center;
+}
+.date {
+    font-size: 12px;
+    color: rgba(70, 64, 91, .5);
+    margin-left: 16px;
+}
+.option_box {
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+}
+.ml_66 {
+     margin-left: 66px;
+}
+.option {
+    width: 24px;
+    height: auto;
+    opacity: .5;
+}
+.visited:visited {
+    color: #46405B;
+}
+.name {
+    font-size: 16px;
+    font-weight: bold;
+}
+.detail {
+    font-size: 14px;
+    color: #46405B;
+    margin-top: 8px;
+}
+.body {
+    font-size: 16px;
+    color: #46405B;
+    margin-top: 8px;
+}
+.post_pic_box {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 16px;
+    margin-left: 66px;
+}
+.post_pic {
+    width: 100%;
+    height: auto;
+}
+.circle-container {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: -24px;
+  margin-top: -24px;
+}
+.circle-box {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: rgba(70, 64, 91, .35);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.delete {
+    width: 16px;
+    height: auto;
+}
+button {
+  border: none;
+  outline: none;
+  appearance: none;
+  background: none;
+  cursor: pointer;
+}
+.action_box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.action {
+    width: 16px;
+    height: 14.4px;
+}
+.count {
+    font-size: 12px;
+    color: #46405B;
+    margin-top: -2px;
+}
+.like_box,
+.comment_box {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.view_box {
+    display: flex;
+}
+.view_box a {
+  display: flex;
+  align-items: center;
+}
+.view {
+    font-size: 12px;
+    color: rgba(70, 64, 91, .75);
+}
+.right {
+    width: 12px;
+    height: 12px;
+    margin-bottom: -2px;
+}
+.more_box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+}
+.back {
+    width: auto;
+    height: 16px;
+    position: sticky;
+    top: 24.5px;
+    left: 24px;
+    index: 5;
+}
+@media screen and (min-width: 768px) {
+    .mb {
+        margin-bottom: 16px;
+    }
+}

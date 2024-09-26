@@ -1,0 +1,94 @@
+@charset 'utf-8';
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: 1.8;
+    text-decoration: none;
+    font-family: "源ノ角ゴシック", sans-serif;
+}
+.mb {
+    margin-bottom: 72px;
+}
+h1 {
+    background: #9DC3C0;
+    height: 56px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    font-size: 18px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 56px;
+}
+p {
+    color: #46405B;
+    font-size: 14px;
+}
+.container {
+    width: calc(100% - 32px);
+    margin: 16px auto;
+}
+.pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.img_box {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #9DC3C0;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icon {
+    width: 35px;
+    height: 35px;
+}
+.visited:visited {
+    color: #46405B;
+}
+.name {
+    font-size: 14px;
+    font-weight: bold;
+}
+.time {
+    font-size: 12px;
+    color: rgba(70, 64, 91, .5);
+}
+.box {
+    display: flex;
+    align-items: center;
+    /*margin-top: 24px;*/
+}
+.inner {
+    margin-left: 16px;
+}
+.sp {
+    margin-left: 8px;
+}
+.pc {
+    display: none;
+}
+.more {
+    margin-left: auto;
+    margin-top: 12px;
+}
+.right {
+    width: 18px;
+    height: 18px;
+}
+@media screen and (min-width: 768px) {
+    .sp {
+        display: none;
+    }
+    .pc {
+        display: block;
+    }
+    .mb {
+        margin-bottom: 16px;
+    }
+}

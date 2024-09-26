@@ -1,0 +1,104 @@
+@charset 'utf-8';
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: 1.8;
+    text-decoration: none;
+    font-family: "源ノ角ゴシック", sans-serif;
+}
+/*navigation.blade.php・ナビゲーション*/
+ .nav_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    flex-direction: row;
+    background-color: #ffffff;
+    height: 56px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, .5);
+}
+.nav {
+    display: block;
+    border-radius: 20px;
+    background: #9DC3C0;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    width: 60px;
+    height: 24px;
+}
+
+/*app.blade.php・全体レイアウト*/
+.sp_app_container {
+    width: 100%;
+ }
+.sp_footer {
+    position: fixed;
+    bottom: 0;
+    left: 0; 
+    width: 100%;
+ }
+.sp_button {
+    position: fixed;
+    right: 16px;
+    bottom: 80px;
+}
+.pc_app_container {
+    display: none;
+}
+@media screen and (min-width: 768px) {
+    /*navigation.blade.php・ナビゲーション*/
+    .nav_container {
+        flex-direction: column;
+        background-color: initial;
+        height: initial;
+        box-shadow: initial;
+    }
+    .nav {
+        font-size: 12px;
+        width: 100px;
+        height: 40px;
+    }
+    /*app.blade.php・全体レイアウト*/
+    .sp_app_container {
+        display: none;
+    }
+    .sp_footer {
+        display: none;
+    }
+    .sp_button {
+        display: none;
+    }
+    .pc_app_container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        margin: 0 auto;
+        width: calc(100% - 32px);
+    }
+    .pc_body {
+        width: 100%;
+        max-width: 675px;
+        height: calc(100vh - 64px);
+        margin: 32px 0;
+        box-shadow: 0px 3px 6px rgba(157, 195, 192, .25);
+        border-radius: 25px;
+        overflow: scroll;
+        scrollbar-width: none;
+    }
+    .pc_button {
+        width: 100px;
+        display: flex;
+        justify-content: flex-end;
+        margin: auto 0 128px;
+    }
+}
+@media screen and (min-width: 990px) {
+    .pc_app_container {
+        width: 990px;
+    }
+}

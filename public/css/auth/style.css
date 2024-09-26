@@ -1,0 +1,92 @@
+@charset 'utf-8';
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: 1.8;
+    text-decoration: none;
+    font-family: "源ノ角ゴシック", sans-serif;
+}
+/*guest.blade.php・全体レイアウト*/
+.container {
+    box-shadow: 0 3px 6px rgba(157, 195, 192, .5);
+    margin: 128px auto 0;
+    width: calc(100% - 32px);
+    text-align: center;
+    padding: 32px 0;
+}
+@media screen and (min-width: 768px) {
+    .container {
+        width: 500px;
+    }
+}
+/*login.blade.php・ログイン*/
+/*registern.blade.php・新規登録*/
+.title {
+    font-size: 20px;
+    font-weight: bold;
+    color: rgba(70, 64, 91, .75);
+    text-align: center;
+}
+ .login {
+    color: #46405B;
+    width: calc(100% - 32px);
+    font-size: 12px;
+    background: none;
+    background: rgba(242, 242, 242, .75);
+    /*padding: 16px;*/
+    height: 50px;
+    margin: 32px auto 0;
+    padding-left: 16px;
+	border: none;
+	border-radius: 0;
+	outline: none;
+	appearance: none;
+}
+input.login:focus {
+    /*border: 1px solid #9DC3C0;*/
+    outline: none;
+}
+.mt-16 {
+    margin-top: 16px;
+}
+button {
+  border: none;
+  outline: none;
+  appearance: none;
+  background: none;
+  cursor: pointer;
+  color: #ffffff;
+  width: calc(100% - 32px);
+  font-size: 16px;
+  background-color: #9DC3C0;
+  /*padding: 16px;*/
+  height: 50px;
+  margin-top: 16px;
+}
+.forget {
+    margin-top: 8px;
+}
+.forget_link {
+    color: #46405B;
+    font-size: 14px;
+}
+.forget_link.visited:visited {
+    color: #46405B;
+}
+.register {
+    font-size: 16px;
+    border: 1px solid #9DC3C0;
+    text-align: center;
+    width: calc(100% - 32px);
+    /*padding: 16px;*/
+    height: 50px;
+    margin: 16px auto 0;
+    line-height: 50px;
+}
+.register_link {
+    color: #9DC3C0;
+}
+.register_link.visited:visited {
+    color: #9DC3C0;
+}

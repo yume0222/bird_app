@@ -13,47 +13,34 @@
 
         <!-- Scripts -->
         {{--@vite(['resources/css/app.css', 'resources/js/app.js'])--}}
-  <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        .app_container {
-            display: flex;
-        }
-        .footer {
-           
-        }
-        .body {
-            width: calc(100% - 64px);
-            max-width: 675px;
-            height: calc(100vh - 64px);
-            margin: 32px auto;
-            border: 1px solid #000000;
-            overflow: scroll;
-            scrollbar-width: none;
-        }
-        .button {
-         
-        }
-        </style>
-        
-   
-        
-        </style>
+        <link rel="stylesheet" href="{{ asset('/css/app/style.css') }}">
     </head>
    <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
 
-            <div class="app_container">
-                <div class="footer">@include('layouts.navigation')</div>
-                     <div class="body">
-                          {{ $slot }}
-                     </div>
-                <div class="button"><x-post-button /></div>
+            <!-- sp --><!-- Page Content -->
+            <div class="sp_app_container">
+                <div>
+                    {{ $slot }}
+                </div>
+                <!--<x-post-button class="button"/>-->
+                <div class="sp_footer">
+                    @include('layouts.navigation')
+                </div>
             </div>
-            <!-- Page Content -->
+            
+            <!-- pc --><!-- Page Content -->
+            <div class="pc_app_container" >
+                <div class="pc_footer">
+                    @include('layouts.navigation')
+                </div>
+                <div class="pc_body">
+                    {{ $slot }}
+                </div>
+                <div class="pc_button">
+                    <x-post-button />
+                </div>
+            </div>
 
             <!-- Page Heading -->
             @if (isset($header))
@@ -63,7 +50,5 @@
                     </div>
                 </header>
             @endif
-            
-            <!--<x-post-button />-->
         </div>
 </html>

@@ -1,52 +1,60 @@
 <x-app-layout><!--通知-->
-<style>
-    img {
-        width: 20px;
-        height: 20px;
-    }
-</style>
+    <link rel="stylesheet" href="{{ asset('/css/notion/style.css') }}">
+    
+    <h1>Notion</h1>
+    <div class="mb">
     @foreach($notifications as $notification)
-    <div>
-        @if($notification->type === 'like')
-        @if($notification->user->image_path)
-            <div>
-                <img src="{{ $notification->user->image_path }}">
+    <div class="container">
+        @if($notification->type === 'like' || $notification->type === 'comment')
+            @php
+                // 通知に関連するユーザーを取得
+                $user = \App\Models\User::find($notification->data['user_id']);
+            @endphp
+            <div class="box">
+                <a href="{{ url('/profile/show/' . $user->id) }}">
+                    @if($user && $user->image_path)
+                        <div>
+                            <img src="{{ $user->image_path }}" alt="{{ $user->name }}のプロフィール画像" class="pic">
+                        </div>
+                    @else
+                        <div class="img_box">
+                            <img src="{{ asset('/img/feather.svg') }}" class="icon">
+                        </div>
+                    @endif
+                </a>
+                
+                <div class="inner">
+                    @if($notification->type === 'like')
+                        <p>
+                            <span class="name">
+                                <a href="{{ url('/profile/show/' . $user->id) }}" class="visited">{{ $user->name }}さん</a>
+                            </span>があなたの投稿にいいねしました。
+                            <span class="time sp">{{ $notification->created_at->diffForHumans() }}</span>
+                        </p>
+                    @elseif($notification->type === 'comment')
+                        <p>
+                            <span class="name">
+                                <a href="{{ url('/profile/show/' . $user->id) }}" class="visited">{{ $user->name }}さん</a>
+                            </span>があなたの投稿にコメントしました。
+                            <span class="time sp">{{ $notification->created_at->diffForHumans() }}</span>
+                        </p>
+                    @endif
+                    
+                    <p class="time pc">{{ $notification->created_at->diffForHumans() }}</p>
+                </div>
+                
+                <div class="more">
+                     <a href="{{ url('/posts/' . $notification->notifiable_id) }}">
+                         <img src="{{ asset('/img/chevron-right.svg') }}" class="right">
+                     </a>
+                </div>
             </div>
-        @else
-            <p>ピヨ</p> <!--仮-->
-        @endif
-            {{ $notification->data['user_name'] }}さんがあなたの投稿にいいねしました。
-            <a href="{{ url('/posts/' . $notification->notifiable_id) }}">投稿を表示</a>
-            <a href="{{ url('/profile/show/' . $notification->data['user_id']) }}">ユーザーのプロフィール</a>
-            
-            
-        @elseif($notification->type === 'comment')
-        @if($notification->user->image_path)
-            <div>
-                <img src="{{ $notification->user->image_path }}">
-            </div>
-        @else
-            <p>ピヨ</p> <!--仮-->
-        @endif
-            {{ $notification->data['user_name'] }}さんがあなたの投稿にコメントしました。
-            <a href="{{ url('/posts/' . $notification->notifiable_id) }}">投稿を表示</a>
-            <a href="{{ url('/profile/show/' . $notification->data['user_id']) }}">ユーザーのプロフィール</a>
         @endif
     </div>
     @endforeach
+    </div>
     
-    {{--@foreach($notifications as $notification)-->
-    <!--<div>-->
-    <!--    @if($notification->type === 'like')-->
-    <!--        <a href="{{ url('/posts/' . $notification->notifiable_id) }}">-->
-    <!--            <a href="{{ url('/profile/show/' . $notification->user_id) }}">{{ $notification->data['user_name'] }}</a>さんがあなたの投稿にいいねしました。-->
-    <!--        </a>-->
-    <!--    @elseif($notification->type === 'comment')-->
-    <!--        <a href="{{ url('/posts/' . $notification->notifiable_id) }}">-->
-    <!--            <a href="{{ url('/profile/show/' . $notification->user_id) }}">{{ $notification->data['user_name'] }}</a>さんがあなたの投稿にコメントしました。-->
-    <!--        </a>-->
-    
-    <!--    @endif-->
-    <!--</div>-->
-    <!--@endforeach--}}
+    <div class="sp_button">
+        <x-post-button />
+    </div>
 </x-app-layout>
